@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
+  const App({
+    Key key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Places app',
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      home: MyFirstStatefulWidget(),
+      home: MyFirstStatelessWidget(),
     );
   }
 }
@@ -28,6 +32,8 @@ class MyFirstStatelessWidget extends StatelessWidget {
       ),
     );
   }
+
+  //void getType() => context.runtimeType;
 }
 
 class MyFirstStatefulWidget extends StatefulWidget {
@@ -47,4 +53,6 @@ class _State extends State<MyFirstStatefulWidget> {
       ),
     );
   }
+
+  void getType() => context.runtimeType;
 }
