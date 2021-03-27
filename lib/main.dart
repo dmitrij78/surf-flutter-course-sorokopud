@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/screen/sight_list_screen.dart';
 
 void main() {
   runApp(App());
@@ -14,45 +15,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Places app',
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Roboto'),
-      home: MyFirstStatelessWidget(),
+      home: SightListScreen(),
     );
   }
-}
-
-class MyFirstStatelessWidget extends StatelessWidget {
-  var _counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    _counter += 1;
-    print(_counter);
-    return Container(
-      child: Center(
-        child: Text('Hello course'),
-      ),
-    );
-  }
-
-  //void getType() => context.runtimeType;
-}
-
-class MyFirstStatefulWidget extends StatefulWidget {
-  @override
-  _State createState() => _State();
-}
-
-class _State extends State<MyFirstStatefulWidget> {
-  var _counter = 0;
-  @override
-  Widget build(BuildContext context) {
-    _counter += 1;
-    print(_counter);
-    return Container(
-      child: Center(
-        child: Text('Hello course'),
-      ),
-    );
-  }
-
-  void getType() => context.runtimeType;
 }
