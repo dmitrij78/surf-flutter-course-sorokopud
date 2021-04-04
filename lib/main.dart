@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:places/mocks.dart';
+import 'package:places/ui/res/strings/strings.dart';
 import 'package:places/ui/res/styles.dart';
-import 'package:places/ui/res/text_styles.dart';
+import 'package:places/ui/screen/sight_list_screen.dart';
 
 void main() {
   runApp(App());
@@ -14,24 +16,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Places app',
+      title: appTitle,
       theme: themeData,
-      home: Container(
-        color: Colors.white,
-        padding: EdgeInsets.only(top: 64, left: 16, right: 16),
-        child: RichText(
-          text: TextSpan(style: textBold32, children: [
-            TextSpan(children: [
-              TextSpan(text: 'C', style: TextStyle(color: Color(0xff4caf50))),
-              TextSpan(text: 'писок\n'),
-            ]),
-            TextSpan(children: [
-              TextSpan(text: 'и', style: TextStyle(color: Color(0xfffbc02d))),
-              TextSpan(text: 'нтересных мест'),
-            ]),
-          ]),
-        ),
-      ),
+      home: SightListScreen(sights: mocks),
     );
   }
 }
