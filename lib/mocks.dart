@@ -1,5 +1,4 @@
 import 'package:places/domain/sight_description.dart';
-import 'package:places/ui/screen/sight_details.dart';
 
 import 'domain/sight.dart';
 
