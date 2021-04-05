@@ -1,3 +1,6 @@
+import 'package:places/domain/sight_description.dart';
+import 'package:places/ui/screen/sight_details.dart';
+
 import 'domain/sight.dart';
 
 final mocks = <Sight>[
@@ -32,3 +35,12 @@ final mocks = <Sight>[
     type: 'музей',
   ),
 ];
+
+final mockDescription = SightDescription(
+  name: 'Пряности и радости',
+  description: 'Пряный вкус радостной жизни вместе с шеф-поваром '
+      'Изо Дзандзава, благодаря которой у гостей ресторана есть возможность '
+      'выбирать из двух направлений: европейского и восточного',
+  type: 'ресторан',
+  workHours: 'закрыто до 09:00',
+);

@@ -37,13 +37,13 @@ class _SightListScreenState extends State<SightListScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SightCard(sight: widget.sights[2]),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SightCard(sight: widget.sights[0]),
                 SizedBox(height: 16),
                 SightCard(sight: widget.sights[1]),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SightCard(sight: widget.sights[2]),
               ],
             ),
