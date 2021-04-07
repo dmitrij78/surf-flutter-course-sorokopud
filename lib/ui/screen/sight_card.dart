@@ -13,16 +13,30 @@ class SightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildImageContainer(),
-        _buildDescriptionContainer(),
-      ],
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _CardImageContainer(sight: sight),
+          SizedBox(height: 10),
+          _DiscriptionContainer(sight: sight),
+        ],
+      ),
     );
   }
+}
 
-  Widget _buildDescriptionContainer() {
+class _DiscriptionContainer extends StatelessWidget {
+  const _DiscriptionContainer({
+    Key key,
+    @required this.sight,
+  }) : super(key: key);
+
+  final Sight sight;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: cardBackground,
@@ -36,18 +50,22 @@ class SightCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 40,
-            child: Text(
-              '${sight.name}',
-              style: textMeduim16Secondary,
-              maxLines: 2,
-              overflow: TextOverflow.fade,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.5,
+            ),
+            child: Container(
+              height: 40,
+              color: Colors.lightBlue,
+              child: Text(
+                '${sight.name}',
+                style: textMeduim16Secondary,
+                maxLines: 2,
+                overflow: TextOverflow.fade,
+              ),
             ),
           ),
-          SizedBox(
-            height: 2,
-          ),
+          SizedBox(height: 2),
           Text(
             '${sight.details}',
             style: textRegular14Secondary1,
@@ -58,13 +76,21 @@ class SightCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildImageContainer() {
+class _CardImageContainer extends StatelessWidget {
+  const _CardImageContainer({
+    Key key,
+    @required this.sight,
+  }) : super(key: key);
+  final Sight sight;
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          //Картинка превью достопримечательности
-          height: PRVIEW_IMAGE_HEIGT,
+          height: 96,
           decoration: BoxDecoration(
             color: imageMockColor,
             borderRadius: const BorderRadius.only(

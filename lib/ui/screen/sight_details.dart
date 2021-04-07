@@ -12,69 +12,96 @@ class SightDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        toolbarHeight: 360,
-        flexibleSpace: Stack(
-          children: [
-            Container(
-              color: imageMockColor,
-            ),
-            Positioned(
-              top: 36,
-              left: 16,
-              child: _AppBarBackButtonInverse(onBackPressed: () => {}),
-            )
-          ],
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 24),
-                Text(
-                  description.name,
-                  style: textBold24Secondary,
-                  maxLines: 2,
-                ),
-                const SizedBox(height: 2),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: [
-                    Text(description.type, style: textBold14),
-                    const SizedBox(width: 16),
-                    Text(description.workHours, style: textRegular14Secondary1),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  description.description,
-                  style: textRegular14Secondary.copyWith(height: 1.3),
-                ),
-                const SizedBox(height: 24),
-                _ActionButton(),
-                const SizedBox(height: 24),
-                _Divider(),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(child: _SecondaryActionButton()),
-                    Expanded(child: _SecondaryActionButton()),
-                  ],
-                ),
-              ],
-            ),
+      appBar: _DetailsAppBar(),
+      body: _DetailsBody(description: description),
+    );
+  }
+}
+
+class _DetailsBody extends StatelessWidget {
+  const _DetailsBody({
+    Key key,
+    @required this.description,
+  }) : super(key: key);
+
+  final SightDescription description;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 24),
+              Text(
+                description.name,
+                style: textBold24Secondary,
+                maxLines: 2,
+              ),
+              const SizedBox(height: 2),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(description.type, style: textBold14),
+                  const SizedBox(width: 16),
+                  Text(description.workHours, style: textRegular14Secondary1),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Text(
+                description.description,
+                style: textRegular14Secondary.copyWith(height: 1.3),
+              ),
+              const SizedBox(height: 24),
+              _ActionButton(),
+              const SizedBox(height: 24),
+              _Divider(),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(child: _SecondaryActionButton()),
+                  Expanded(child: _SecondaryActionButton()),
+                ],
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+}
+
+class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const _DetailsAppBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      flexibleSpace: Stack(
+        children: [
+          Container(
+            color: imageMockColor,
+          ),
+          Positioned(
+            top: 36,
+            left: 16,
+            child: _AppBarBackButtonInverse(onBackPressed: () => {}),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(360);
 }
 
 class _SecondaryActionButton extends StatelessWidget {
