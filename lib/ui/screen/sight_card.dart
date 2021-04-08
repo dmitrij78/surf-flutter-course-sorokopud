@@ -16,13 +16,23 @@ class SightCard extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        _buildImageContainer(),
-        _buildDescriptionContainer(),
+        _CardImageContainer(sight: sight),
+        _DiscriptionContainer(sight: sight),
       ],
     );
   }
+}
 
-  Widget _buildDescriptionContainer() {
+class _DiscriptionContainer extends StatelessWidget {
+  const _DiscriptionContainer({
+    Key key,
+    @required this.sight,
+  }) : super(key: key);
+
+  final Sight sight;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: cardBackground,
@@ -36,7 +46,7 @@ class SightCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          Container(
             height: 40,
             child: Text(
               '${sight.name}',
@@ -45,9 +55,7 @@ class SightCard extends StatelessWidget {
               overflow: TextOverflow.fade,
             ),
           ),
-          SizedBox(
-            height: 2,
-          ),
+          SizedBox(height: 2),
           Text(
             '${sight.details}',
             style: textRegular14Secondary1,
@@ -58,13 +66,21 @@ class SightCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildImageContainer() {
+class _CardImageContainer extends StatelessWidget {
+  const _CardImageContainer({
+    Key key,
+    @required this.sight,
+  }) : super(key: key);
+  final Sight sight;
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          //Картинка превью достопримечательности
-          height: PRVIEW_IMAGE_HEIGT,
+          height: 96,
           decoration: BoxDecoration(
             color: imageMockColor,
             borderRadius: const BorderRadius.only(
