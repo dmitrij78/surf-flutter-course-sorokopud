@@ -13,7 +13,7 @@ class SightDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _DetailsAppBar(),
-      body: _DetailsBody(description: description),
+      body: SafeArea(child: _DetailsBody(description: description)),
     );
   }
 }
