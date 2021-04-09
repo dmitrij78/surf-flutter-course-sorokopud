@@ -42,4 +42,5 @@ final mockDescription = SightDescription(
       'выбирать из двух направлений: европейского и восточного',
   type: 'ресторан',
   workHours: 'закрыто до 09:00',
+  url: 'https://picsum.photos/id/3/400/600',
 );

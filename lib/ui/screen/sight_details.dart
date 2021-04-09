@@ -12,7 +12,7 @@ class SightDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _DetailsAppBar(),
+      appBar: _DetailsAppBar(description: description),
       body: SafeArea(child: _DetailsBody(description: description)),
     );
   }
@@ -77,8 +77,11 @@ class _DetailsBody extends StatelessWidget {
 }
 
 class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final SightDescription description;
+
   const _DetailsAppBar({
     Key key,
+    @required this.description,
   }) : super(key: key);
 
   @override
@@ -88,7 +91,24 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Stack(
         children: [
           Container(
-            color: imageMockColor,
+            color: cardBackground,
+            child: Image.network(
+              '${description.url}',
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
+              loadingBuilder: (context, child, progress) {
+                return progress == null
+                    ? Stack(
+                        children: [
+                          child,
+                          _GradientCover(),
+                        ],
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      );
+              },
+            ),
           ),
           Positioned(
             top: 36,
@@ -175,6 +195,30 @@ class _AppBarBackButtonInverse extends StatelessWidget {
           color: witeBackground,
         ),
         child: Center(child: const Icon(Icons.keyboard_arrow_left)),
+      ),
+    );
+  }
+}
+
+class _GradientCover extends StatelessWidget {
+  const _GradientCover({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        backgroundBlendMode: BlendMode.multiply,
+        gradient: LinearGradient(
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          colors: [
+            imageGradient1.withOpacity(0.4),
+            imageGradient2.withOpacity(0.4),
+          ],
+          stops: [0, 1],
+        ),
       ),
     );
   }
