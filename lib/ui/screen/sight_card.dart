@@ -5,20 +5,71 @@ import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/text_styles.dart';
 
 class SightCard extends StatelessWidget {
-  static const double PRVIEW_IMAGE_HEIGT = 96;
-
   final Sight sight;
 
   const SightCard({Key key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _CardImageContainer(sight: sight),
-        _DiscriptionContainer(sight: sight),
-      ],
+    return Container(
+      height: 188,
+      decoration: BoxDecoration(
+        color: cardBackground,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        child: Image.network(
+          '${sight.url}',
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+          loadingBuilder: (context, child, progress) {
+            return progress == null
+                ? Stack(
+                    children: [
+                      child,
+                      _GradientCover(),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          _CardImageContainer(sight: sight),
+                          _DiscriptionContainer(sight: sight),
+                        ],
+                      )
+                    ],
+                  )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _GradientCover extends StatelessWidget {
+  const _GradientCover({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        backgroundBlendMode: BlendMode.multiply,
+        gradient: LinearGradient(
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          colors: [
+            imageGradient1.withOpacity(0.4),
+            imageGradient2.withOpacity(0.4),
+          ],
+          stops: [0, 1],
+        ),
+      ),
     );
   }
 }
@@ -34,6 +85,7 @@ class _DiscriptionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 96,
       decoration: BoxDecoration(
         color: cardBackground,
         borderRadius: const BorderRadius.only(
@@ -80,9 +132,8 @@ class _CardImageContainer extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 96,
+          height: 92,
           decoration: BoxDecoration(
-            color: imageMockColor,
             borderRadius: const BorderRadius.only(
               topLeft: const Radius.circular(12),
               topRight: const Radius.circular(12),
