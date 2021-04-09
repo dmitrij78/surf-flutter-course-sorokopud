@@ -60,12 +60,13 @@ class _GradientCover extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         backgroundBlendMode: BlendMode.multiply,
+        color: Colors.black.withOpacity(0.4),
         gradient: LinearGradient(
           begin: FractionalOffset.topCenter,
           end: FractionalOffset.bottomCenter,
           colors: [
-            imageGradient1.withOpacity(0.4),
-            imageGradient2.withOpacity(0.4),
+            imageGradient1.withOpacity(1),
+            imageGradient2.withOpacity(0.08),
           ],
           stops: [0, 1],
         ),
