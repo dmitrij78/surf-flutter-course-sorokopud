@@ -5,20 +5,105 @@ import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/text_styles.dart';
 
 class SightCard extends StatelessWidget {
-  static const double PRVIEW_IMAGE_HEIGT = 96;
-
   final Sight sight;
 
   const SightCard({Key key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
+    return Container(
+      height: 188,
+      decoration: BoxDecoration(
+        color: cardBackground,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        child: Image.network(
+          '${sight.url}',
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+          loadingBuilder: (context, child, progress) {
+            if (progress != null) {
+              final loaded = progress.cumulativeBytesLoaded;
+              final total = progress.expectedTotalBytes;
+              final value = loaded / total;
+              return _SightCardProgress(progressValue: value);
+            } else {
+              return _SightCardContent(sight: sight, image: child);
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _SightCardProgress extends StatelessWidget {
+  const _SightCardProgress({
+    Key key,
+    @required this.progressValue,
+  }) : super(key: key);
+
+  final double progressValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator(value: progressValue));
+  }
+}
+
+class _SightCardContent extends StatelessWidget {
+  const _SightCardContent({
+    Key key,
+    @required this.sight,
+    @required this.image,
+  }) : super(key: key);
+
+  final Sight sight;
+  final Widget image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
       children: [
-        _CardImageContainer(sight: sight),
-        _DiscriptionContainer(sight: sight),
+        image,
+        _GradientCover(),
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            _CardImageContainer(sight: sight),
+            _DiscriptionContainer(sight: sight),
+          ],
+        )
       ],
+    );
+  }
+}
+
+class _GradientCover extends StatelessWidget {
+  const _GradientCover({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        backgroundBlendMode: BlendMode.multiply,
+        color: Colors.black.withOpacity(0.4),
+        gradient: LinearGradient(
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          colors: [
+            imageGradient1.withOpacity(1),
+            imageGradient2.withOpacity(0.08),
+          ],
+          stops: [0, 1],
+        ),
+      ),
     );
   }
 }
@@ -34,6 +119,7 @@ class _DiscriptionContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 96,
       decoration: BoxDecoration(
         color: cardBackground,
         borderRadius: const BorderRadius.only(
@@ -80,9 +166,8 @@ class _CardImageContainer extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: 96,
+          height: 92,
           decoration: BoxDecoration(
-            color: imageMockColor,
             borderRadius: const BorderRadius.only(
               topLeft: const Radius.circular(12),
               topRight: const Radius.circular(12),

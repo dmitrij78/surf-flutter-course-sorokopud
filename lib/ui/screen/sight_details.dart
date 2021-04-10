@@ -54,7 +54,7 @@ class _DetailsBody extends StatelessWidget {
               const SizedBox(height: 24),
               Text(
                 description.description,
-                style: textRegular14Secondary.copyWith(height: 1.3),
+                style: textRegular14Secondary,
               ),
               const SizedBox(height: 24),
               _ActionButton(),

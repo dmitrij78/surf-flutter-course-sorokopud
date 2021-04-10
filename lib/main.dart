@@ -19,7 +19,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       theme: themeData,
-      home: SightDetails(description: mockDescription),
+      home: SightListScreen(sights: mocks),
     );
   }
 }
