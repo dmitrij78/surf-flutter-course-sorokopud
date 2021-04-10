@@ -26,26 +26,59 @@ class SightCard extends StatelessWidget {
           width: double.infinity,
           fit: BoxFit.fitWidth,
           loadingBuilder: (context, child, progress) {
-            return progress == null
-                ? Stack(
-                    children: [
-                      child,
-                      _GradientCover(),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          _CardImageContainer(sight: sight),
-                          _DiscriptionContainer(sight: sight),
-                        ],
-                      )
-                    ],
-                  )
-                : Center(
-                    child: CircularProgressIndicator(),
-                  );
+            if (progress != null) {
+              final loaded = progress.cumulativeBytesLoaded;
+              final total = progress.expectedTotalBytes;
+              final value = loaded / total;
+              return _SightCardProgress(progressValue: value);
+            } else {
+              return _SightCardContent(sight: sight, image: child);
+            }
           },
         ),
       ),
+    );
+  }
+}
+
+class _SightCardProgress extends StatelessWidget {
+  const _SightCardProgress({
+    Key key,
+    @required this.progressValue,
+  }) : super(key: key);
+
+  final double progressValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: CircularProgressIndicator(value: progressValue));
+  }
+}
+
+class _SightCardContent extends StatelessWidget {
+  const _SightCardContent({
+    Key key,
+    @required this.sight,
+    @required this.image,
+  }) : super(key: key);
+
+  final Sight sight;
+  final Widget image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        image,
+        _GradientCover(),
+        Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            _CardImageContainer(sight: sight),
+            _DiscriptionContainer(sight: sight),
+          ],
+        )
+      ],
     );
   }
 }
