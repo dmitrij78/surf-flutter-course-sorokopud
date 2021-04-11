@@ -11,7 +11,9 @@ const Color accent = _green,
     witeBackground = _white,
     imageMockColor = _lightBlue,
     imageGradient1 = _darkBlue1,
-    imageGradient2 = _darkBlue2;
+    imageGradient2 = _darkBlue2,
+    iconColor = _darkBlue2,
+    unselectedIconColor = _lightBlue;
 
 const Color _transparent = Colors.transparent,
     _oxfordBlue = Color(0xFF252849),

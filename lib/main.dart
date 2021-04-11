@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/res/strings/strings.dart';
 import 'package:places/ui/res/styles.dart';
+import 'package:places/ui/screen/home_screen.dart';
 
 void main() {
   runApp(App());
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       theme: themeData,
-      home: Scaffold(),
+      home: HomeScreen(),
     );
   }
 }
