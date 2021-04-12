@@ -91,7 +91,7 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: Stack(
         children: [
           Container(
-            color: cardBackground,
+            color: panelBackground,
             child: Image.network(
               '${description.url}',
               width: double.infinity,

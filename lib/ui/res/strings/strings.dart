@@ -4,3 +4,5 @@ const String appBarTitleText = 'Список\nинтересных мест';
 
 //  Экран избранное
 const String visitingScreenAppbarTitle = 'Избранное';
+const String wishVistTabTitle = 'Хочу посетить';
+const String alreadyVisitedTabTitle = 'Посетил';

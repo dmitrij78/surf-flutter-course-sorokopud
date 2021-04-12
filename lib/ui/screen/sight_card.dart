@@ -14,7 +14,7 @@ class SightCard extends StatelessWidget {
     return Container(
       height: 188,
       decoration: BoxDecoration(
-        color: cardBackground,
+        color: panelBackground,
         borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
@@ -121,7 +121,7 @@ class _DiscriptionContainer extends StatelessWidget {
     return Container(
       height: 96,
       decoration: BoxDecoration(
-        color: cardBackground,
+        color: panelBackground,
         borderRadius: const BorderRadius.only(
           bottomLeft: const Radius.circular(12),
           bottomRight: const Radius.circular(12),
