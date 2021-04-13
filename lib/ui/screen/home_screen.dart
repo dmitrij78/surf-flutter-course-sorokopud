@@ -25,6 +25,7 @@ class HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     _controller = TabController(length: menuItems.length, vsync: this);
+    _controller.index = 2;
     _controller.addListener(() {
       setState(() {});
     });
@@ -37,9 +38,9 @@ class HomeScreenState extends State<HomeScreen>
         controller: _controller,
         children: [
           SightListScreen(sights: mockSights),
-          Center(child: Text('Tab 2 is unimplemented')),
+          Center(child: Text('Screen 2 is unimplemented')),
           VisitingScreen(),
-          Center(child: Text('Tab 4 is unimplemented')),
+          Center(child: Text('Screen 4 is unimplemented')),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

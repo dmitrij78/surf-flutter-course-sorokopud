@@ -18,6 +18,9 @@ TextStyle textRegular = _text.copyWith(fontWeight: FontWeight.normal),
     ),
     textRegular14Secondary1 = textRegularl14.copyWith(
       color: textColorSecondary1,
+    ),
+    textRegular14Accent = textRegularl14.copyWith(
+      color: textColorAccent,
     );
 
 //Medium

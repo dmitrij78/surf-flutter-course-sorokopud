@@ -101,7 +101,7 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ? Stack(
                         children: [
                           child,
-                          _GradientCover(),
+                          _GradientLayer(),
                         ],
                       )
                     : Center(
@@ -200,8 +200,8 @@ class _AppBarBackButtonInverse extends StatelessWidget {
   }
 }
 
-class _GradientCover extends StatelessWidget {
-  const _GradientCover({
+class _GradientLayer extends StatelessWidget {
+  const _GradientLayer({
     Key key,
   }) : super(key: key);
 
