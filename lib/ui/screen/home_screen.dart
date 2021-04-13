@@ -36,7 +36,7 @@ class HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _controller,
         children: [
-          SightListScreen(sights: mocks),
+          SightListScreen(sights: mockSights),
           Center(child: Text('Tab 2 is unimplemented')),
           VisitingScreen(),
           Center(child: Text('Tab 4 is unimplemented')),

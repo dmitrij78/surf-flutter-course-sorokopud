@@ -4,10 +4,10 @@ import 'package:places/domain/sight.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/text_styles.dart';
 
-class SightCard extends StatelessWidget {
+class WishVistSightCard extends StatelessWidget {
   final Sight sight;
 
-  const SightCard({Key key, this.sight}) : super(key: key);
+  const WishVistSightCard({Key key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,37 +118,37 @@ class _DiscriptionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 96,
-      decoration: BoxDecoration(
-        color: panelBackground,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: const Radius.circular(12),
-          bottomRight: const Radius.circular(12),
+    return ConstrainedBox(
+      constraints: BoxConstraints(minHeight: 96),
+      child: Container(
+        decoration: BoxDecoration(
+          color: panelBackground,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: const Radius.circular(12),
+            bottomRight: const Radius.circular(12),
+          ),
         ),
-      ),
-      padding: const EdgeInsets.all(16),
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 40,
-            child: Text(
+        padding: const EdgeInsets.all(16),
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
               '${sight.name}',
               style: textMeduim16Secondary,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.fade,
             ),
-          ),
-          SizedBox(height: 2),
-          Text(
-            '${sight.details}',
-            style: textRegular14Secondary1,
-            maxLines: 1,
-            overflow: TextOverflow.clip,
-          ),
-        ],
+            SizedBox(height: 2),
+            Text(
+              '${sight.workHours}',
+              style: textRegular14Secondary1,
+              maxLines: 1,
+              overflow: TextOverflow.clip,
+            ),
+          ],
+        ),
       ),
     );
   }

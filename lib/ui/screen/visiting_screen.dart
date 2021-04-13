@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain/domain.dart';
+import 'package:places/mocks.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/strings/strings.dart';
 import 'package:places/ui/res/text_styles.dart';
+import 'package:places/ui/widgets/visited_sight_card.dart';
+import 'package:places/ui/widgets/wish_visit_sight_card.dart';
 
 class VisitingScreen extends StatefulWidget {
   @override
@@ -46,9 +50,55 @@ class _State extends State<VisitingScreen> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Container(child: Center(child: Text('Посетил'))),
-          Container(child: Center(child: Text('Хочу посетить'))),
+          _WishVistSightList(wishVisitSights: mockWishVisitSights),
+          _VisitedSightList(vistedSights: mockVisitedSights),
         ],
+      ),
+    );
+  }
+}
+
+class _WishVistSightList extends StatelessWidget {
+  final List<WishVisitSight> wishVisitSights;
+
+  const _WishVistSightList({Key key, this.wishVisitSights}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            WishVistSightCard(sight: wishVisitSights[0]),
+            const SizedBox(height: 16),
+            WishVistSightCard(sight: wishVisitSights[1]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _VisitedSightList extends StatelessWidget {
+  final List<VisitedSight> vistedSights;
+
+  const _VisitedSightList({Key key, this.vistedSights}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            VistedSightCard(sight: vistedSights[0]),
+            const SizedBox(height: 16),
+            VistedSightCard(sight: vistedSights[1]),
+          ],
+        ),
       ),
     );
   }
