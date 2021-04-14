@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/domain.dart';
 import 'package:places/ui/res/text_styles.dart';
@@ -11,6 +12,10 @@ class WishVistSightCard extends BaseSightCard {
           key: key,
           sight: sight,
           content: _WishVistSightContent(sight: sight),
+          actions: [
+            Container(width: 20, height: 18, color: Colors.green),
+            Container(width: 20, height: 18, color: Colors.white),
+          ],
         );
 }
 
@@ -29,7 +34,6 @@ class _WishVistSightContent extends StatelessWidget {
           Text(
             '${sight.name}',
             style: textMeduim16Secondary,
-            softWrap: true,
           ),
           SizedBox(height: 2),
           Container(

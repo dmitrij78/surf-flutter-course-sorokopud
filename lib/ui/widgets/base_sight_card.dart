@@ -9,11 +9,13 @@ class BaseSightCard extends StatelessWidget {
 
   final Sight sight;
   final Widget content;
+  final List<Widget> actions;
 
   BaseSightCard({
     Key key,
     @required this.sight,
     this.content,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -40,6 +42,7 @@ class BaseSightCard extends StatelessWidget {
                       image: image,
                       imageGradientHeight: imageHeight,
                       content: content,
+                      actions: actions,
                     )
                   : _ImageLoadProgress(
                       value: _calculateProgressValue(
@@ -76,6 +79,7 @@ class _ImageCoverLayer extends StatelessWidget {
   final Sight sight;
   final Widget image;
   final Widget content;
+  final List<Widget> actions;
 
   const _ImageCoverLayer({
     Key key,
@@ -83,6 +87,7 @@ class _ImageCoverLayer extends StatelessWidget {
     @required this.image,
     @required this.imageGradientHeight,
     this.content,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -93,7 +98,10 @@ class _ImageCoverLayer extends StatelessWidget {
         _GradientLayer(imageGradientHeight),
         Column(
           children: [
-            _TopTransparentLayer(sight: sight),
+            _TopTransparentLayer(
+              sight: sight,
+              actions: actions,
+            ),
             _BottomContentLayer(content: content),
           ],
         )
@@ -164,11 +172,14 @@ class _TopTransparentLayer extends StatelessWidget {
   static const double height = 92;
 
   final Sight sight;
+  final List<Widget> actions;
 
   const _TopTransparentLayer({
     Key key,
     @required this.sight,
-  }) : super(key: key);
+    List<Widget> actions,
+  })  : this.actions = actions ?? const [],
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +201,15 @@ class _TopTransparentLayer extends StatelessWidget {
         Positioned(
             top: 19,
             right: 18,
-            child: Container(width: 20, height: 18, color: Colors.white)),
+            child: Row(
+              children: [
+                for (var action in actions)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: action,
+                  )
+              ],
+            )),
       ],
     );
   }

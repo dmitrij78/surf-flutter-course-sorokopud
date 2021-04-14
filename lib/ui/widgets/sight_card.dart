@@ -12,6 +12,9 @@ class SightCard extends BaseSightCard {
           key: key,
           sight: sight,
           content: _SightContent(sight: sight),
+          actions: [
+            Container(width: 20, height: 18, color: Colors.white),
+          ],
         );
 }
 
@@ -37,7 +40,6 @@ class _SightContent extends StatelessWidget {
           Text(
             '${sight.workHours}',
             style: textRegular14Secondary1,
-            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
