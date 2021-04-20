@@ -8,42 +8,42 @@ void main() {
   runApp(App());
 }
 
-class App extends StatelessWidget {
-  const App({
-    Key key,
-  }) : super(key: key);
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  final bool _isDarkMode = true;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      theme: darkTheme,
+      theme: _isDarkMode ? darkTheme : lightTheme,
       home: HomeScreen(),
     );
   }
 }
 
 final lightTheme = ThemeData(
-  primaryColor: lmPrimary,
-  accentColor: lmAccent,
-  backgroundColor: lmBackground,
-  scaffoldBackgroundColor: lmBackground,
-  appBarTheme: AppBarTheme(
-    elevation: 0,
-    titleTextStyle: textMeduim18Secondary,
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
+    primaryColor: lmPrimary,
+    accentColor: lmAccent,
     backgroundColor: lmBackground,
-    selectedItemColor: lmBottomBarSelectedColor,
-    unselectedItemColor: lmBottomBarUnselectedColor,
-    showSelectedLabels: false,
-    showUnselectedLabels: false,
-  ),
-  toggleButtonsTheme: ToggleButtonsThemeData(
-    
-  )
-);
+    scaffoldBackgroundColor: lmBackground,
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      titleTextStyle: textMeduim18Secondary,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: lmBackground,
+      selectedItemColor: lmBottomBarSelectedColor,
+      unselectedItemColor: lmBottomBarUnselectedColor,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    ),
+    toggleButtonsTheme: ToggleButtonsThemeData());
 
 final darkTheme = ThemeData(
   primaryColor: dmPrimary,
@@ -63,3 +63,9 @@ final darkTheme = ThemeData(
     showUnselectedLabels: false,
   ),
 );
+
+class AppConfig {
+  final bool isDarkMode;
+
+  AppConfig({this.isDarkMode = false});
+}
