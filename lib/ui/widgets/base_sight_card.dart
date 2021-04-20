@@ -129,8 +129,8 @@ class _GradientLayer extends StatelessWidget {
           begin: FractionalOffset.topCenter,
           end: FractionalOffset.bottomCenter,
           colors: [
-            imageGradient1.withOpacity(1),
-            imageGradient2.withOpacity(0.08),
+            cardImageGradient1.withOpacity(1),
+            cardImageGradient1.withOpacity(0.08),
           ],
           stops: [0, 1],
         ),
@@ -154,7 +154,7 @@ class _BottomContentLayer extends StatelessWidget {
       constraints: BoxConstraints(minHeight: minHeight),
       child: Container(
         decoration: BoxDecoration(
-          color: panelBackground,
+          color: cardBackground,
           borderRadius: const BorderRadius.only(
             bottomLeft: const Radius.circular(12),
             bottomRight: const Radius.circular(12),

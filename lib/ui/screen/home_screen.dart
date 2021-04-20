@@ -25,7 +25,7 @@ class HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     _controller = TabController(length: menuItems.length, vsync: this);
-    _controller.index = 2;
+    _controller.index = 0;
     _controller.addListener(() {
       setState(() {});
     });
@@ -45,10 +45,10 @@ class HomeScreenState extends State<HomeScreen>
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _controller.index,
-        selectedItemColor: iconColor,
-        unselectedItemColor: unselectedIconColor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        // selectedItemColor: lmIconColor,
+        // unselectedItemColor: lmUnselectedIconColor,
+        // showSelectedLabels: false,
+        // showUnselectedLabels: false,
         onTap: (index) => _controller.animateTo(index),
         items: [
           for (var item in menuItems)

@@ -36,11 +36,8 @@ class _State extends State<VisitingScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: appBarColor,
         title: Text(
           visitingScreenAppbarTitle,
-          style: textMeduim18Secondary,
         ),
         bottom: TabNavigationPanel(
           tabs: tabs,
@@ -119,7 +116,7 @@ class TabNavigationPanel extends StatelessWidget
       padding: const EdgeInsets.all(6),
       child: Container(
         decoration: BoxDecoration(
-          color: panelBackground,
+          color: cardBackground,
           borderRadius: BorderRadius.circular(40),
         ),
         child: SizedBox(
@@ -176,5 +173,5 @@ class TabIndicator extends StatelessWidget {
       isSelected ? textBold14Inverse : textBold14InactiveBlack;
 
   Color _getBackgroundColor() =>
-      isSelected ? activeBackground : invisibleBackground;
+      isSelected ? lmActiveBackground : lmInvisibleBackground;
 }

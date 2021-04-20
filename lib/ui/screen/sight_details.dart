@@ -87,11 +87,10 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0,
       flexibleSpace: Stack(
         children: [
           Container(
-            color: panelBackground,
+            color: imagePlaceholder,
             child: Image.network(
               '${description.url}',
               width: double.infinity,
@@ -134,7 +133,7 @@ class _SecondaryActionButton extends StatelessWidget {
     return Container(
       height: 40,
       alignment: Alignment.center,
-      color: imageMockColor,
+      color: lmImageMockColor,
     );
   }
 }
@@ -163,7 +162,7 @@ class _ActionButton extends StatelessWidget {
     return Container(
       height: 48,
       decoration: BoxDecoration(
-        color: accent,
+        color: lmAccent,
         borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
@@ -192,7 +191,7 @@ class _AppBarBackButtonInverse extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          color: witeBackground,
+          color: Colors.white,
         ),
         child: Center(child: const Icon(Icons.keyboard_arrow_left)),
       ),
@@ -215,8 +214,8 @@ class _GradientLayer extends StatelessWidget {
           begin: FractionalOffset(0.5, -1.3125),
           end: FractionalOffset(0.5, 1.6354),
           colors: [
-            imageGradient1.withOpacity(1),
-            imageGradient2.withOpacity(0.08),
+            cardImageGradient1.withOpacity(1),
+            cardImageGradient2.withOpacity(0.08),
           ],
           stops: [0, 1],
         ),
