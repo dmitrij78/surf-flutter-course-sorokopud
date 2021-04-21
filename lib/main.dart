@@ -27,32 +27,39 @@ class _AppState extends State<App> {
 }
 
 final lightTheme = ThemeData(
-    primaryColor: lmPrimary,
-    accentColor: lmAccent,
+  brightness: Brightness.light,
+  primaryColor: lmPrimary,
+  accentColor: lmAccent,
+  backgroundColor: lmBackground,
+  scaffoldBackgroundColor: lmBackground,
+  appBarTheme: AppBarTheme(
+    elevation: 0,
+    titleTextStyle: lmHeadLine6,
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
     backgroundColor: lmBackground,
-    scaffoldBackgroundColor: lmBackground,
-    appBarTheme: AppBarTheme(
-      elevation: 0,
-      titleTextStyle: textMeduim18Secondary,
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: lmBackground,
-      selectedItemColor: lmBottomBarSelectedColor,
-      unselectedItemColor: lmBottomBarUnselectedColor,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-    ),
-    toggleButtonsTheme: ToggleButtonsThemeData());
+    selectedItemColor: lmBottomBarSelectedColor,
+    unselectedItemColor: lmBottomBarUnselectedColor,
+    showSelectedLabels: false,
+    showUnselectedLabels: false,
+  ),
+  textTheme: TextTheme(
+    headline6: lmHeadLine6,
+    subtitle1: lmSubTitle1,
+    subtitle2: lmSubTitle2,
+  ),
+);
 
 final darkTheme = ThemeData(
+  brightness: Brightness.dark,
   primaryColor: dmPrimary,
   accentColor: dmAccent,
   backgroundColor: dmBackground,
   scaffoldBackgroundColor: dmBackground,
   appBarTheme: AppBarTheme(
     elevation: 0,
-    titleTextStyle: textMeduim18Secondary,
+    titleTextStyle: dmHeadLine6,
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
@@ -61,6 +68,11 @@ final darkTheme = ThemeData(
     unselectedItemColor: dmBottomBarUnselectedColor,
     showSelectedLabels: false,
     showUnselectedLabels: false,
+  ),
+  textTheme: TextTheme(
+    headline6: dmHeadLine6,
+    subtitle1: dmSubTitle1,
+    subtitle2: dmSubTitle2,
   ),
 );
 

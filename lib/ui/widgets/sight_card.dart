@@ -33,13 +33,13 @@ class _SightContent extends StatelessWidget {
         children: [
           Text(
             '${sight.name}',
-            style: textMeduim16Secondary,
+            style: Theme.of(context).textTheme.subtitle1,
             softWrap: true,
           ),
           SizedBox(height: 2),
           Text(
             '${sight.workHours}',
-            style: textRegular14Secondary1,
+            style: Theme.of(context).textTheme.subtitle2,
           ),
         ],
       ),
