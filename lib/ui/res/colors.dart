@@ -5,12 +5,14 @@ const Color lmAccent = Color(0xff4caf50);
 const Color lmBackground = Colors.white;
 const Color lmBottomBarSelectedColor = Color(0xFF3B3E5B);
 const Color lmBottomBarUnselectedColor = Color(0xFF3B3E5B);
+const Color lmCardBackground = Color(0xFFF5F5F5);
 
 const Color dmPrimary = Color(0xFF21222C);
 const Color dmAccent = Colors.white;
 const Color dmBackground = Color(0xFF21222C);
 const Color dmBottomBarSelectedColor = Colors.white;
 const Color dmBottomBarUnselectedColor = Colors.white;
+const Color dmCardBackground = Color(0xFF1A1A20);
 
 const Color lmTextColorPrimary = Color(0xFF252849);
 const Color lmTextColorSecondary = Color(0xFF3B3E5B);
@@ -27,7 +29,7 @@ const Color dmTextColorInactiveBlack = _inactiveBlack;
 const Color dmTextColorAccent = Color(0xff4caf50);
 
 const Color imagePlaceholder = _whiteGrey;
-const Color cardBackground = _whiteGrey;
+
 const Color dividerColor = _inactiveBlack;
 const Color lmInvisibleBackground = _transparent;
 const Color lmImageMockColor = _lightBlue;

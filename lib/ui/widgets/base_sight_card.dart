@@ -22,36 +22,28 @@ class BaseSightCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: imageHeight),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            const Radius.circular(12),
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          child: Image.network(
-            '${sight.url}',
-            width: double.infinity,
-            height: imageHeight,
-            fit: BoxFit.fitWidth,
-            loadingBuilder: (context, image, progress) {
-              return progress == null
-                  ? _ImageCoverLayer(
-                      sight: sight,
-                      image: image,
-                      imageGradientHeight: imageHeight,
-                      content: content,
-                      actions: actions,
-                    )
-                  : _ImageLoadProgress(
-                      value: _calculateProgressValue(
-                        progress.cumulativeBytesLoaded,
-                        progress.expectedTotalBytes,
-                      ),
-                    );
-            },
-          ),
+      child: Card(
+        child: Image.network(
+          '${sight.url}',
+          width: double.infinity,
+          height: imageHeight,
+          fit: BoxFit.fitWidth,
+          loadingBuilder: (context, image, progress) {
+            return progress == null
+                ? _ImageCoverLayer(
+                    sight: sight,
+                    image: image,
+                    imageGradientHeight: imageHeight,
+                    content: content,
+                    actions: actions,
+                  )
+                : _ImageLoadProgress(
+                    value: _calculateProgressValue(
+                      progress.cumulativeBytesLoaded,
+                      progress.expectedTotalBytes,
+                    ),
+                  );
+          },
         ),
       ),
     );
@@ -154,7 +146,7 @@ class _BottomContentLayer extends StatelessWidget {
       constraints: BoxConstraints(minHeight: minHeight),
       child: Container(
         decoration: BoxDecoration(
-          color: cardBackground,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: const BorderRadius.only(
             bottomLeft: const Radius.circular(12),
             bottomRight: const Radius.circular(12),

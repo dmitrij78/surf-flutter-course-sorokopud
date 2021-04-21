@@ -14,7 +14,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final bool _isDarkMode = true;
+  final bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,14 @@ final lightTheme = ThemeData(
     showSelectedLabels: false,
     showUnselectedLabels: false,
   ),
+  cardTheme: CardTheme(
+    elevation: 0,
+    color: lmCardBackground,
+    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
+  ),
   textTheme: TextTheme(
     headline6: lmHeadLine6,
     subtitle1: lmSubTitle1,
@@ -68,6 +76,14 @@ final darkTheme = ThemeData(
     unselectedItemColor: dmBottomBarUnselectedColor,
     showSelectedLabels: false,
     showUnselectedLabels: false,
+  ),
+  cardTheme: CardTheme(
+    elevation: 0,
+    color: dmCardBackground,
+    clipBehavior: Clip.antiAlias,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12),
+    ),
   ),
   textTheme: TextTheme(
     headline6: dmHeadLine6,

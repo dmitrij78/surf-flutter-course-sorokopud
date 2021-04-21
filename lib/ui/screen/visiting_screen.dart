@@ -116,7 +116,7 @@ class TabNavigationPanel extends StatelessWidget
       padding: const EdgeInsets.all(6),
       child: Container(
         decoration: BoxDecoration(
-          color: cardBackground,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(40),
         ),
         child: SizedBox(

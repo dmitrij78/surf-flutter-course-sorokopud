@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/res/text_styles.dart';
 import 'package:places/ui/widgets/base_sight_card.dart';
 
 class SightCard extends BaseSightCard {
