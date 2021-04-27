@@ -3,7 +3,6 @@ import 'package:places/domain/domain.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/strings/strings.dart';
-import 'package:places/ui/res/text_styles.dart';
 import 'package:places/ui/widgets/visited_sight_card.dart';
 import 'package:places/ui/widgets/wish_visit_sight_card.dart';
 
@@ -58,7 +57,10 @@ class _State extends State<VisitingScreen> with TickerProviderStateMixin {
 class _WishVistSightList extends StatelessWidget {
   final List<WishVisitSight> wishVisitSights;
 
-  const _WishVistSightList({Key key, this.wishVisitSights}) : super(key: key);
+  const _WishVistSightList({
+    Key key,
+    this.wishVisitSights,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +108,11 @@ class TabNavigationPanel extends StatelessWidget
   final TabController tabController;
   final List<String> tabs;
 
-  const TabNavigationPanel(
-      {Key key, @required this.tabController, @required this.tabs})
-      : super(key: key);
+  const TabNavigationPanel({
+    Key key,
+    @required this.tabController,
+    @required this.tabs,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -119,22 +123,20 @@ class TabNavigationPanel extends StatelessWidget
           color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(40),
         ),
-        child: SizedBox(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TabIndicator(
-                text: tabs[0],
-                isSelected: tabController.index == 0,
-                onTap: () => tabController.animateTo(0),
-              ),
-              TabIndicator(
-                text: tabs[1],
-                isSelected: tabController.index == 1,
-                onTap: () => tabController.animateTo(1),
-              ),
-            ],
-          ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TabIndicator(
+              text: tabs[0],
+              isSelected: tabController.index == 0,
+              onTap: () => tabController.animateTo(0),
+            ),
+            TabIndicator(
+              text: tabs[1],
+              isSelected: tabController.index == 1,
+              onTap: () => tabController.animateTo(1),
+            ),
+          ],
         ),
       ),
     );
@@ -149,8 +151,12 @@ class TabIndicator extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
 
-  const TabIndicator({Key key, this.text, this.isSelected, this.onTap})
-      : super(key: key);
+  const TabIndicator({
+    Key key,
+    this.text,
+    this.isSelected,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -160,18 +166,44 @@ class TabIndicator extends StatelessWidget {
         height: 40,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: _getBackgroundColor(),
+          color: _getBackgroundColor(context),
           borderRadius: BorderRadius.circular(40),
         ),
-        child: Text(text, style: _getTextStyle()),
+        child: Text(text, style: _getTextStyle(context)),
       ),
       onTap: this.onTap == null ? null : onTap,
     );
   }
 
-  TextStyle _getTextStyle() =>
-      isSelected ? textBold14Inverse : textBold14InactiveBlack;
+  TextStyle _getTextStyle(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.dark
+          ? _getDarkTextStyle(context)
+          : _getLightTextStyle(context);
 
-  Color _getBackgroundColor() =>
-      isSelected ? lmActiveBackground : lmInvisibleBackground;
+  Color _getBackgroundColor(BuildContext context) =>
+      isSelected ? Theme.of(context).accentColor : Colors.transparent;
+
+  TextStyle _getDarkTextStyle(BuildContext context) {
+    return isSelected
+        ? Theme.of(context)
+            .textTheme
+            .subtitle1
+            .copyWith(color: lmTextColorPrimary)
+        : Theme.of(context)
+            .textTheme
+            .subtitle1
+            .copyWith(color: dmTextColorInactiveBlack);
+  }
+
+  TextStyle _getLightTextStyle(BuildContext context) {
+    return isSelected
+        ? Theme.of(context)
+            .textTheme
+            .subtitle1
+            .copyWith(color: dmTextColorPrimary)
+        : Theme.of(context)
+            .textTheme
+            .subtitle1
+            .copyWith(color: lmTextColorInactiveBlack);
+  }
 }

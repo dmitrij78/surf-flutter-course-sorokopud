@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/res/colors.dart';
-import 'package:places/ui/res/text_styles.dart';
 
 class BaseSightCard extends StatelessWidget {
   static const double imageHeight = 188;
@@ -187,9 +186,16 @@ class _TopTransparentLayer extends StatelessWidget {
           ),
         ),
         Positioned(
-            top: 16,
-            left: 16,
-            child: Text('${sight.type}', style: textBold14Inverse)),
+          top: 16,
+          left: 16,
+          child: Text(
+            '${sight.type}',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                .copyWith(color: dmTextColorPrimary),
+          ),
+        ),
         Positioned(
             top: 19,
             right: 18,

@@ -12,7 +12,11 @@ class SightCard extends BaseSightCard {
           sight: sight,
           content: _SightContent(sight: sight),
           actions: [
-            Container(width: 20, height: 18, color: Colors.white),
+            Container(
+              width: 20,
+              height: 18,
+              color: Colors.white,
+            ),
           ],
         );
 }
@@ -32,7 +36,7 @@ class _SightContent extends StatelessWidget {
         children: [
           Text(
             '${sight.name}',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.bodyText1,
             softWrap: true,
           ),
           SizedBox(height: 2),
