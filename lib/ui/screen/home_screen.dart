@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/res/colors.dart';
+import 'package:places/ui/screen/sight_details.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 import 'package:places/ui/screen/visiting_screen.dart';
 
@@ -25,7 +25,7 @@ class HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
     _controller = TabController(length: menuItems.length, vsync: this);
-    _controller.index = 2;
+    _controller.index = 0;
     _controller.addListener(() {
       setState(() {});
     });
@@ -40,15 +40,12 @@ class HomeScreenState extends State<HomeScreen>
           SightListScreen(sights: mockSights),
           Center(child: Text('Screen 2 is unimplemented')),
           VisitingScreen(),
-          Center(child: Text('Screen 4 is unimplemented')),
+          //Center(child: Text('Screen 4 is unimplemented')),
+          SightDetails(description: mockDescription)
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _controller.index,
-        selectedItemColor: iconColor,
-        unselectedItemColor: unselectedIconColor,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
         onTap: (index) => _controller.animateTo(index),
         items: [
           for (var item in menuItems)

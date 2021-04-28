@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/res/colors.dart';
-import 'package:places/ui/res/text_styles.dart';
 
 class BaseSightCard extends StatelessWidget {
   static const double imageHeight = 188;
@@ -22,36 +21,28 @@ class BaseSightCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(minHeight: imageHeight),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            const Radius.circular(12),
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          child: Image.network(
-            '${sight.url}',
-            width: double.infinity,
-            height: imageHeight,
-            fit: BoxFit.fitWidth,
-            loadingBuilder: (context, image, progress) {
-              return progress == null
-                  ? _ImageCoverLayer(
-                      sight: sight,
-                      image: image,
-                      imageGradientHeight: imageHeight,
-                      content: content,
-                      actions: actions,
-                    )
-                  : _ImageLoadProgress(
-                      value: _calculateProgressValue(
-                        progress.cumulativeBytesLoaded,
-                        progress.expectedTotalBytes,
-                      ),
-                    );
-            },
-          ),
+      child: Card(
+        child: Image.network(
+          '${sight.url}',
+          width: double.infinity,
+          height: imageHeight,
+          fit: BoxFit.fitWidth,
+          loadingBuilder: (context, image, progress) {
+            return progress == null
+                ? _ImageCoverLayer(
+                    sight: sight,
+                    image: image,
+                    imageGradientHeight: imageHeight,
+                    content: content,
+                    actions: actions,
+                  )
+                : _ImageLoadProgress(
+                    value: _calculateProgressValue(
+                      progress.cumulativeBytesLoaded,
+                      progress.expectedTotalBytes,
+                    ),
+                  );
+          },
         ),
       ),
     );
@@ -129,8 +120,8 @@ class _GradientLayer extends StatelessWidget {
           begin: FractionalOffset.topCenter,
           end: FractionalOffset.bottomCenter,
           colors: [
-            imageGradient1.withOpacity(1),
-            imageGradient2.withOpacity(0.08),
+            cardImageGradient1.withOpacity(1),
+            cardImageGradient1.withOpacity(0.08),
           ],
           stops: [0, 1],
         ),
@@ -154,7 +145,7 @@ class _BottomContentLayer extends StatelessWidget {
       constraints: BoxConstraints(minHeight: minHeight),
       child: Container(
         decoration: BoxDecoration(
-          color: panelBackground,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: const BorderRadius.only(
             bottomLeft: const Radius.circular(12),
             bottomRight: const Radius.circular(12),
@@ -195,9 +186,16 @@ class _TopTransparentLayer extends StatelessWidget {
           ),
         ),
         Positioned(
-            top: 16,
-            left: 16,
-            child: Text('${sight.type}', style: textBold14Inverse)),
+          top: 16,
+          left: 16,
+          child: Text(
+            '${sight.type}',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                .copyWith(color: dmTextColorPrimary),
+          ),
+        ),
         Positioned(
             top: 19,
             right: 18,

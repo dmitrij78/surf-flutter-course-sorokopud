@@ -5,6 +5,11 @@ class SightDescription {
   final String description;
   final String url;
 
-  SightDescription(
-      {this.name, this.type, this.workHours, this.description, this.url});
+  SightDescription({
+    this.name,
+    this.type,
+    this.workHours,
+    this.description,
+    this.url,
+  });
 }

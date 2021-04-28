@@ -1,32 +1,37 @@
 import 'package:flutter/material.dart';
 
-const Color accent = _green,
-    appBarColor = _transparent,
-    textColorPrimary = _oxfordBlue,
-    textColorSecondary = _secondaryBlack,
-    textColorSecondary1 = _secondaryBlack1,
-    textColorInverse = _white,
-    textColorInactiveBlack = _inactiveBlack,
-    textColorAccent = _green,
-    panelBackground = _whiteGrey,
-    witeBackground = _white,
-    invisibleBackground = _transparent,
-    dividerColor = _inactiveBlack,
-    imageMockColor = _lightBlue,
-    imageGradient1 = _darkBlue1,
-    imageGradient2 = _darkBlue2,
-    iconColor = _darkBlue2,
-    activeBackground = _darkBlue2,
-    unselectedIconColor = _lightBlue;
+const Color lmPrimary = Colors.white;
+const Color lmAccent = Color(0xFF3B3E5B);
+const Color lmBackground = Colors.white;
+const Color lmBottomBarSelectedColor = Color(0xFF3B3E5B);
+const Color lmBottomBarUnselectedColor = Color(0xFF3B3E5B);
+const Color lmCardBackground = Color(0xFFF5F5F5);
+const Color lmIconColor = Colors.black;
 
-const Color _transparent = Colors.transparent,
-    _oxfordBlue = Color(0xFF252849),
-    _green = Color(0xFF4CAF50),
-    _whiteGrey = Color(0xFFF5F5F5),
-    _white = Colors.white,
-    _lightBlue = Colors.blueGrey,
-    _darkBlue1 = Color(0xFF252849),
-    _darkBlue2 = Color(0xFF3B3E5B),
-    _inactiveBlack = Color(0x8F7C7E92),
-    _secondaryBlack = Color(0xFF3B3E5B),
-    _secondaryBlack1 = Color(0xFF7C7E92);
+const Color dmPrimary = Color(0xFF21222C);
+const Color dmAccent = Colors.white;
+const Color dmBackground = Color(0xFF21222C);
+const Color dmBottomBarSelectedColor = Colors.white;
+const Color dmBottomBarUnselectedColor = Colors.white;
+const Color dmCardBackground = Color(0xFF1A1A20);
+const Color dmIconColor = Colors.white;
+
+const Color lmTextColorPrimary = Color(0xFF3B3E5B);
+const Color lmTextColorSecondary = Color(0xFF7C7E92);
+const Color lmTextColorSecondary1 = Color(0xFF7C7E92);
+const Color lmTextColorInactiveBlack = Color(0x8F7C7E92);
+const Color lmTextColorAppBar = Color(0xFF252849);
+
+const Color dmTextColorPrimary = Colors.white;
+const Color dmTextColorSecondary = Color(0xFF7C7E92);
+const Color dmTextColorSecondary1 = Color(0x8F7C7E92);
+const Color dmTextColorInactiveBlack = Color(0x8F7C7E92);
+const Color dmTextColorAppBar = Colors.white;
+
+const Color accentColorGreen = Color(0xFF4CAF50);
+const Color textColorAccentGreen = Color(0xFF4CAF50);
+
+const Color dividerColor = Color(0x8F7C7E92);
+const Color lmImageMockColor = Colors.blueGrey;
+const Color cardImageGradient1 = Color(0xFF252849);
+const Color cardImageGradient2 = Color(0xFF3B3E5B);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/domain.dart';
-import 'package:places/ui/res/text_styles.dart';
+import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/widgets/base_sight_card.dart';
 
 class WishVistSightCard extends BaseSightCard {
@@ -33,19 +33,22 @@ class _WishVistSightContent extends StatelessWidget {
         children: [
           Text(
             '${sight.name}',
-            style: textMeduim16Secondary,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           SizedBox(height: 2),
           Container(
             height: 28,
             child: Text(
               '${sight.visit}',
-              style: textRegular14Accent,
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle2
+                  .copyWith(color: textColorAccentGreen),
             ),
           ),
           Text(
             '${sight.workHours}',
-            style: textRegular14Secondary1,
+            style: Theme.of(context).textTheme.subtitle2,
           ),
         ],
       ),
