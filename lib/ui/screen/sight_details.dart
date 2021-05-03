@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight_description.dart';
 import 'package:places/ui/res/colors.dart';
+import 'package:places/ui/res/strings/strings.dart';
 
 class SightDetails extends StatefulWidget {
   final SightDescription description;
@@ -184,13 +185,23 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 48,
-      decoration: BoxDecoration(
-        color: accentColorGreen,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(12),
+      child: ElevatedButton(
+        child: Text(
+          buildRouteButtonText.toUpperCase(),
         ),
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          ),
+          primary: accentColorGreen,
+          elevation: 0,
+          textStyle: Theme.of(context).textTheme.subtitle1.copyWith(
+                color: dmAccent,
+              ),
+        ),
+        onPressed: () => {},
       ),
     );
   }
