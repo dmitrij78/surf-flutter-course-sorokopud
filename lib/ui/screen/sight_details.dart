@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight_description.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/strings/strings.dart';
+import 'package:places/ui/widgets/buttons/main_action_button.dart';
 
 class SightDetails extends StatefulWidget {
   final SightDescription description;
@@ -84,7 +85,12 @@ class _DetailsBody extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText2,
             ),
             const SizedBox(height: 24),
-            _ActionButton(),
+            MainActionButton(
+              text: buildRouteButtonText.toUpperCase(),
+              iconAssetName: 'res/icons/ic_build_route.svg',
+              onPressed: () =>
+                  print('Build route is pressed'), //Заменить на реальный колбэк
+            ),
             const SizedBox(height: 24),
             _Divider(),
             const SizedBox(height: 8),
@@ -174,35 +180,6 @@ class _Divider extends StatelessWidget {
     return Container(
       height: 0.8,
       color: dividerColor,
-    );
-  }
-}
-
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 48,
-      child: ElevatedButton(
-        child: Text(
-          buildRouteButtonText.toUpperCase(),
-        ),
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-          ),
-          primary: accentColorGreen,
-          elevation: 0,
-          textStyle: Theme.of(context).textTheme.subtitle1.copyWith(
-                color: dmAccent,
-              ),
-        ),
-        onPressed: () => {},
-      ),
     );
   }
 }
