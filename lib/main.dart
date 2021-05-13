@@ -24,9 +24,3 @@ class _AppState extends State<App> {
     );
   }
 }
-
-class AppConfig {
-  final bool isDarkMode;
-
-  AppConfig({this.isDarkMode = false});
-}

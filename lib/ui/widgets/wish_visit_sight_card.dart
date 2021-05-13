@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain/domain.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/widgets/base_sight_card.dart';
+import 'package:places/ui/widgets/buttons/card_icon_button.dart';
 
 class WishVistSightCard extends BaseSightCard {
   WishVistSightCard({
@@ -13,8 +15,22 @@ class WishVistSightCard extends BaseSightCard {
           sight: sight,
           content: _WishVistSightContent(sight: sight),
           actions: [
-            Container(width: 20, height: 18, color: Colors.green),
-            Container(width: 20, height: 18, color: Colors.white),
+            CardIconButton(
+              icon: SvgPicture.asset(
+                'res/icons/ic_calendar.svg',
+                color: dmAccent,
+              ),
+              onPressed: () => print('WishVistSightCard.'
+                  ' PlanToVistButton is pressed'),
+            ),
+            CardIconButton(
+              icon: SvgPicture.asset(
+                'res/icons/ic_delete.svg',
+                color: dmAccent,
+              ),
+              onPressed: () => print('WishVistSightCard.'
+                  ' DeleteButton is pressed'),
+            )
           ],
         );
 }

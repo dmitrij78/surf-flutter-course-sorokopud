@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight_description.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/strings/strings.dart';
-import 'package:places/ui/widgets/buttons/main_action_button.dart';
+import 'package:places/ui/widgets/buttons/accent_action_button.dart';
+import 'package:places/ui/widgets/buttons/primary_text_button.dart';
 
 class SightDetails extends StatefulWidget {
   final SightDescription description;
@@ -34,8 +35,14 @@ class _State extends State<SightDetails> {
     return Theme(
       data: detailsTheme,
       child: Scaffold(
-        appBar: _DetailsAppBar(description: widget.description),
-        body: SafeArea(child: _DetailsBody(description: widget.description)),
+        appBar: _DetailsAppBar(
+          description: widget.description,
+        ),
+        body: SafeArea(
+          child: _DetailsBody(
+            description: widget.description,
+          ),
+        ),
       ),
     );
   }
@@ -85,11 +92,10 @@ class _DetailsBody extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyText2,
             ),
             const SizedBox(height: 24),
-            MainActionButton(
+            AccentActionButton(
               text: buildRouteButtonText.toUpperCase(),
               iconAssetName: 'res/icons/ic_build_route.svg',
-              onPressed: () =>
-                  print('Build route is pressed'), //Заменить на реальный колбэк
+              onPressed: () => print('Button BuildRoute is pressed'),
             ),
             const SizedBox(height: 24),
             _Divider(),
@@ -97,8 +103,19 @@ class _DetailsBody extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(child: _SecondaryActionButton()),
-                Expanded(child: _SecondaryActionButton()),
+                Expanded(
+                  child: PrimaryTextButton(
+                    label: planToVisitButtonText,
+                    iconAssetName: 'res/icons/ic_calendar.svg',
+                  ),
+                ),
+                Expanded(
+                  child: PrimaryTextButton(
+                    label: addToFavoriteButtonText,
+                    iconAssetName: 'res/icons/ic_favorite.svg',
+                    onPressed: () => print('Button AddToFavorites is pressed'),
+                  ),
+                ),
               ],
             ),
           ],
@@ -153,21 +170,6 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(360);
-}
-
-class _SecondaryActionButton extends StatelessWidget {
-  const _SecondaryActionButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      alignment: Alignment.center,
-      color: lmImageMockColor,
-    );
-  }
 }
 
 class _Divider extends StatelessWidget {

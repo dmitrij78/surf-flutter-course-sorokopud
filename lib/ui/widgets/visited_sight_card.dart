@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain/domain.dart';
+import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/widgets/base_sight_card.dart';
+import 'package:places/ui/widgets/buttons/card_icon_button.dart';
 
 class VistedSightCard extends BaseSightCard {
   VistedSightCard({
@@ -12,8 +15,22 @@ class VistedSightCard extends BaseSightCard {
           sight: sight,
           content: _VistedSightCard(sight: sight),
           actions: [
-            Container(width: 20, height: 18, color: Colors.white),
-            Container(width: 20, height: 18, color: Colors.blue),
+            CardIconButton(
+              icon: SvgPicture.asset(
+                'res/icons/ic_share.svg',
+                color: dmAccent,
+              ),
+              onPressed: () => print('VistedSightCard.'
+                  ' ShareButton is pressed'),
+            ),
+            CardIconButton(
+              icon: SvgPicture.asset(
+                'res/icons/ic_delete.svg',
+                color: dmAccent,
+              ),
+              onPressed: () => print('VistedSightCard.'
+                  ' DeleteButton is pressed'),
+            )
           ],
         );
 }

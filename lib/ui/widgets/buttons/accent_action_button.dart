@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui/res/colors.dart';
 
-class MainActionButton extends StatelessWidget {
+class AccentActionButton extends StatelessWidget {
   final String text;
   final String iconAssetName;
   final VoidCallback onPressed;
 
-  const MainActionButton({
+  const AccentActionButton({
     Key key,
     @required this.text,
     @required this.onPressed,

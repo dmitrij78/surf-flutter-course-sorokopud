@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/widgets/base_sight_card.dart';
+
+import 'buttons/card_icon_button.dart';
 
 class SightCard extends BaseSightCard {
   SightCard({
@@ -12,11 +16,13 @@ class SightCard extends BaseSightCard {
           sight: sight,
           content: _SightContent(sight: sight),
           actions: [
-            Container(
-              width: 20,
-              height: 18,
-              color: Colors.white,
-            ),
+            CardIconButton(
+              icon: SvgPicture.asset(
+                'res/icons/ic_favorite.svg',
+                color: dmAccent,
+              ),
+              onPressed: () => print('SightCard. AddToFavorite is pressed'),
+            )
           ],
         );
 }

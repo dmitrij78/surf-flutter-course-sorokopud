@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/res/colors.dart';
+import 'package:places/ui/res/styles.dart';
 import 'package:places/ui/res/text_styles.dart';
 
 ThemeData lightTheme = ThemeData(
@@ -36,6 +37,7 @@ ThemeData lightTheme = ThemeData(
     bodyText1: lmBody1,
     bodyText2: lmBody2,
   ),
+  textButtonTheme: TextButtonThemeData(style: lmButtonStyle),
 );
 
 ThemeData darkTheme = ThemeData(
@@ -72,4 +74,5 @@ ThemeData darkTheme = ThemeData(
     bodyText1: dmBody1,
     bodyText2: dmBody2,
   ),
+  textButtonTheme: TextButtonThemeData(style: dmButtonStyle),
 );

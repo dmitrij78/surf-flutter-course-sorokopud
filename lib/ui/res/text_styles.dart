@@ -52,8 +52,3 @@ TextStyle _body2 = _textRegular.copyWith(
 );
 TextStyle lmBody2 = _body2.copyWith(color: lmTextColorPrimary);
 TextStyle dmBody2 = _body2.copyWith(color: dmTextColorPrimary);
-
-TextStyle textRegularl14 = _textRegular.copyWith(
-  fontSize: 14.0,
-  height: 1.3,
-);
