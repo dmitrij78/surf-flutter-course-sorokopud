@@ -28,3 +28,23 @@ final ButtonStyle dmButtonStyle = ButtonStyle(
     dmTextColorPrimary.withOpacity(0.1),
   ),
 );
+
+final ButtonStyle lmAppBarActionButtonStyle = lmButtonStyle.copyWith(
+  foregroundColor: MaterialStateProperty.resolveWith<Color>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
+      return textColorAccentGreen;
+    },
+  ),
+  textStyle: MaterialStateProperty.all(lmBody1),
+);
+
+final ButtonStyle dmAppBarActionButtonStyle = dmButtonStyle.copyWith(
+  foregroundColor: MaterialStateProperty.resolveWith<Color>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
+      return textColorAccentGreen;
+    },
+  ),
+  textStyle: MaterialStateProperty.all(dmBody1),
+);
