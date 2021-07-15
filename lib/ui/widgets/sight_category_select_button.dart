@@ -7,10 +7,10 @@ import 'package:places/ui/res/text_styles.dart';
 
 class SightCategorySelectButton extends StatelessWidget {
   const SightCategorySelectButton({
-    Key key,
-    @required this.category,
-    @required this.isSelected,
-    @required this.onSelect,
+    Key? key,
+    required this.category,
+    required this.isSelected,
+    required this.onSelect,
   }) : super(key: key);
 
   final SightCategory category;
@@ -45,7 +45,7 @@ class SightCategorySelectButton extends StatelessWidget {
 
 class _CategoryIcon extends StatelessWidget {
   const _CategoryIcon({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -9,9 +9,9 @@ import 'package:places/ui/screen/filter_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
-  final List<Sight> sights;
+  final List<Sight>? sights;
 
-  const SightListScreen({Key key, this.sights}) : super(key: key);
+  const SightListScreen({Key? key, this.sights}) : super(key: key);
 
   @override
   _SightListScreenState createState() => _SightListScreenState();
@@ -41,11 +41,11 @@ class _SightListScreenState extends State<SightListScreen> {
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.all(14.0),
-                itemCount: widget.sights.length,
+                itemCount: widget.sights!.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 14.0),
-                    child: SightCard(sight: widget.sights[index]),
+                    child: SightCard(sight: widget.sights![index]),
                   );
                 },
               ),
@@ -59,7 +59,7 @@ class _SightListScreenState extends State<SightListScreen> {
 
 class _SearchField extends StatelessWidget {
   const _SearchField({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

@@ -6,12 +6,12 @@ import 'package:places/ui/res/colors.dart';
 class PrimaryTextButton extends StatelessWidget {
   final String label;
   final String iconAssetName;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const PrimaryTextButton({
-    Key key,
-    @required this.label,
-    @required this.iconAssetName,
+    Key? key,
+    required this.label,
+    required this.iconAssetName,
     this.onPressed,
   }) : super(key: key);
 
@@ -36,9 +36,9 @@ class PrimaryTextButton extends StatelessWidget {
 
 class _DisabledButton extends StatelessWidget {
   const _DisabledButton({
-    Key key,
-    @required this.label,
-    @required this.iconAssetName,
+    Key? key,
+    required this.label,
+    required this.iconAssetName,
   }) : super(key: key);
 
   final String label;
@@ -53,21 +53,22 @@ class _DisabledButton extends StatelessWidget {
         iconAssetName,
         color: dmTextColorSecondary1,
       ),
+      onPressed: () => {},
     );
   }
 }
 
 class _EnabledButton extends StatelessWidget {
   const _EnabledButton({
-    Key key,
-    @required this.label,
-    @required this.iconAssetName,
-    @required this.onPressed,
+    Key? key,
+    required this.label,
+    required this.iconAssetName,
+    required this.onPressed,
   }) : super(key: key);
 
   final String label;
   final String iconAssetName;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

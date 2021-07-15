@@ -5,9 +5,9 @@ class CardIconButton extends StatelessWidget {
   static const size = 18;
 
   const CardIconButton({
-    Key key,
-    @required this.icon,
-    @required this.onPressed,
+    Key? key,
+    required this.icon,
+    required this.onPressed,
   }) : super(key: key);
 
   final Widget icon;

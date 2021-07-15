@@ -14,20 +14,20 @@ class VisitingScreen extends StatefulWidget {
 class _State extends State<VisitingScreen> with TickerProviderStateMixin {
   static const tabs = <String>[wishVistTabTitle, alreadyVisitedTabTitle];
 
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: tabs.length, vsync: this);
-    _tabController.addListener(() {
+    _tabController!.addListener(() {
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -55,10 +55,10 @@ class _State extends State<VisitingScreen> with TickerProviderStateMixin {
 }
 
 class _WishVistSightList extends StatelessWidget {
-  final List<WishVisitSight> wishVisitSights;
+  final List<WishVisitSight>? wishVisitSights;
 
   const _WishVistSightList({
-    Key key,
+    Key? key,
     this.wishVisitSights,
   }) : super(key: key);
 
@@ -70,9 +70,9 @@ class _WishVistSightList extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 16),
-            WishVistSightCard(sight: wishVisitSights[0]),
+            WishVistSightCard(sight: wishVisitSights![0]),
             const SizedBox(height: 16),
-            WishVistSightCard(sight: wishVisitSights[1]),
+            WishVistSightCard(sight: wishVisitSights![1]),
           ],
         ),
       ),
@@ -81,9 +81,9 @@ class _WishVistSightList extends StatelessWidget {
 }
 
 class _VisitedSightList extends StatelessWidget {
-  final List<VisitedSight> vistedSights;
+  final List<VisitedSight>? vistedSights;
 
-  const _VisitedSightList({Key key, this.vistedSights}) : super(key: key);
+  const _VisitedSightList({Key? key, this.vistedSights}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +93,9 @@ class _VisitedSightList extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 16),
-            VistedSightCard(sight: vistedSights[0]),
+            VistedSightCard(sight: vistedSights![0]),
             const SizedBox(height: 16),
-            VistedSightCard(sight: vistedSights[1]),
+            VistedSightCard(sight: vistedSights![1]),
           ],
         ),
       ),
@@ -105,13 +105,13 @@ class _VisitedSightList extends StatelessWidget {
 
 class TabNavigationPanel extends StatelessWidget
     implements PreferredSizeWidget {
-  final TabController tabController;
+  final TabController? tabController;
   final List<String> tabs;
 
   const TabNavigationPanel({
-    Key key,
-    @required this.tabController,
-    @required this.tabs,
+    Key? key,
+    required this.tabController,
+    required this.tabs,
   }) : super(key: key);
 
   @override
@@ -128,13 +128,13 @@ class TabNavigationPanel extends StatelessWidget
           children: [
             TabIndicator(
               text: tabs[0],
-              isSelected: tabController.index == 0,
-              onTap: () => tabController.animateTo(0),
+              isSelected: tabController!.index == 0,
+              onTap: () => tabController!.animateTo(0),
             ),
             TabIndicator(
               text: tabs[1],
-              isSelected: tabController.index == 1,
-              onTap: () => tabController.animateTo(1),
+              isSelected: tabController!.index == 1,
+              onTap: () => tabController!.animateTo(1),
             ),
           ],
         ),
@@ -147,12 +147,12 @@ class TabNavigationPanel extends StatelessWidget
 }
 
 class TabIndicator extends StatelessWidget {
-  final bool isSelected;
-  final String text;
-  final VoidCallback onTap;
+  final bool? isSelected;
+  final String? text;
+  final VoidCallback? onTap;
 
   const TabIndicator({
-    Key key,
+    Key? key,
     this.text,
     this.isSelected,
     this.onTap,
@@ -169,7 +169,7 @@ class TabIndicator extends StatelessWidget {
           color: _getBackgroundColor(context),
           borderRadius: BorderRadius.circular(40),
         ),
-        child: Text(text, style: _getTextStyle(context)),
+        child: Text(text!, style: _getTextStyle(context)),
       ),
       onTap: this.onTap == null ? null : onTap,
     );
@@ -181,29 +181,29 @@ class TabIndicator extends StatelessWidget {
           : _getLightTextStyle(context);
 
   Color _getBackgroundColor(BuildContext context) =>
-      isSelected ? Theme.of(context).accentColor : Colors.transparent;
+      isSelected! ? Theme.of(context).accentColor : Colors.transparent;
 
   TextStyle _getDarkTextStyle(BuildContext context) {
-    return isSelected
+    return isSelected!
         ? Theme.of(context)
             .textTheme
-            .subtitle1
+            .subtitle1!
             .copyWith(color: lmTextColorPrimary)
         : Theme.of(context)
             .textTheme
-            .subtitle1
+            .subtitle1!
             .copyWith(color: dmTextColorInactiveBlack);
   }
 
   TextStyle _getLightTextStyle(BuildContext context) {
-    return isSelected
+    return isSelected!
         ? Theme.of(context)
             .textTheme
-            .subtitle1
+            .subtitle1!
             .copyWith(color: dmTextColorPrimary)
         : Theme.of(context)
             .textTheme
-            .subtitle1
+            .subtitle1!
             .copyWith(color: lmTextColorInactiveBlack);
   }
 }

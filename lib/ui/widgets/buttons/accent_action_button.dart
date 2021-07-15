@@ -5,13 +5,13 @@ import 'package:places/ui/res/colors.dart';
 
 class AccentActionButton extends StatelessWidget {
   final String text;
-  final String iconAssetName;
+  final String? iconAssetName;
   final VoidCallback onPressed;
 
   const AccentActionButton({
-    Key key,
-    @required this.text,
-    @required this.onPressed,
+    Key? key,
+    required this.text,
+    required this.onPressed,
     this.iconAssetName,
   }) : super(key: key);
 
@@ -25,7 +25,7 @@ class AccentActionButton extends StatelessWidget {
           children: [
             iconAssetName == null
                 ? SizedBox.shrink()
-                : SvgPicture.asset(iconAssetName),
+                : SvgPicture.asset(iconAssetName!),
             const SizedBox(width: 10),
             Text(text),
           ],
@@ -38,7 +38,7 @@ class AccentActionButton extends StatelessWidget {
             elevation: 0,
             textStyle: Theme.of(context)
                 .textTheme
-                .subtitle1
+                .subtitle1!
                 .copyWith(color: dmAccent)),
         onPressed: onPressed,
       ),

@@ -7,10 +7,10 @@ import 'package:places/ui/widgets/buttons/accent_action_button.dart';
 import 'package:places/ui/widgets/buttons/primary_text_button.dart';
 
 class SightDetails extends StatefulWidget {
-  final SightDescription description;
+  final SightDescription? description;
 
   const SightDetails({
-    Key key,
+    Key? key,
     this.description,
   }) : super(key: key);
 
@@ -50,11 +50,11 @@ class _State extends State<SightDetails> {
 
 class _DetailsBody extends StatelessWidget {
   const _DetailsBody({
-    Key key,
-    @required this.description,
+    Key? key,
+    required this.description,
   }) : super(key: key);
 
-  final SightDescription description;
+  final SightDescription? description;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class _DetailsBody extends StatelessWidget {
           children: [
             const SizedBox(height: 24),
             Text(
-              description.name,
+              description!.name,
               style: Theme.of(context).textTheme.headline5,
               maxLines: 2,
             ),
@@ -76,19 +76,19 @@ class _DetailsBody extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  description.type,
+                  description!.type,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  description.workHours,
+                  description!.workHours,
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ],
             ),
             const SizedBox(height: 24),
             Text(
-              description.description,
+              description!.description,
               style: Theme.of(context).textTheme.bodyText2,
             ),
             const SizedBox(height: 24),
@@ -126,11 +126,11 @@ class _DetailsBody extends StatelessWidget {
 }
 
 class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final SightDescription description;
+  final SightDescription? description;
 
   const _DetailsAppBar({
-    Key key,
-    @required this.description,
+    Key? key,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -141,7 +141,7 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
           Container(
             color: Theme.of(context).cardColor,
             child: Image.network(
-              '${description.url}',
+              '${description!.url}',
               width: double.infinity,
               fit: BoxFit.fitWidth,
               loadingBuilder: (context, child, progress) {
@@ -174,7 +174,7 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 class _Divider extends StatelessWidget {
   const _Divider({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -187,10 +187,10 @@ class _Divider extends StatelessWidget {
 }
 
 class _AppBarBackButton extends StatelessWidget {
-  final VoidCallback onBackPressed;
+  final VoidCallback? onBackPressed;
 
   const _AppBarBackButton({
-    Key key,
+    Key? key,
     this.onBackPressed,
   }) : super(key: key);
 
@@ -222,7 +222,7 @@ class _AppBarBackButton extends StatelessWidget {
 
 class _GradientLayer extends StatelessWidget {
   const _GradientLayer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

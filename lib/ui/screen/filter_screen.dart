@@ -88,7 +88,7 @@ class _FilterScreenState extends State<FilterScreen> {
 
 class _CategoryFilterGrid extends StatelessWidget {
   const _CategoryFilterGrid({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -143,7 +143,7 @@ class _CategoryFilterGrid extends StatelessWidget {
 
 class _CategoryFiltersLabel extends StatelessWidget {
   const _CategoryFiltersLabel({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -157,8 +157,8 @@ class _CategoryFiltersLabel extends StatelessWidget {
 
 class _ClearFiltersButton extends StatelessWidget {
   const _ClearFiltersButton({
-    Key key,
-    @required this.onPressed,
+    Key? key,
+    required this.onPressed,
   }) : super(key: key);
 
   final VoidCallback onPressed;
@@ -178,9 +178,9 @@ class _ClearFiltersButton extends StatelessWidget {
 
 class _CategoryFilter extends StatelessWidget {
   const _CategoryFilter({
-    Key key,
-    @required this.type,
-    @required this.isSelected,
+    Key? key,
+    required this.type,
+    required this.isSelected,
   }) : super(key: key);
 
   final SightCategory type;

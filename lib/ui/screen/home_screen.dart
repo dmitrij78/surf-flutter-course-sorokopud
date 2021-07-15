@@ -19,14 +19,14 @@ class HomeScreenState extends State<HomeScreen>
     _BottomMenueItem(Icons.settings),
   ];
 
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = TabController(length: menuItems.length, vsync: this);
-    _controller.index = 0;
-    _controller.addListener(() {
+    _controller!.index = 0;
+    _controller!.addListener(() {
       setState(() {});
     });
   }
@@ -45,8 +45,8 @@ class HomeScreenState extends State<HomeScreen>
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _controller.index,
-        onTap: (index) => _controller.animateTo(index),
+        currentIndex: _controller!.index,
+        onTap: (index) => _controller!.animateTo(index),
         items: [
           for (var item in menuItems)
             BottomNavigationBarItem(

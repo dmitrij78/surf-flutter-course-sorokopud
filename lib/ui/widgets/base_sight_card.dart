@@ -6,13 +6,13 @@ import 'package:places/ui/res/colors.dart';
 class BaseSightCard extends StatelessWidget {
   static const double imageHeight = 188;
 
-  final Sight sight;
-  final Widget content;
-  final List<Widget> actions;
+  final Sight? sight;
+  final Widget? content;
+  final List<Widget>? actions;
 
   BaseSightCard({
-    Key key,
-    @required this.sight,
+    Key? key,
+    required this.sight,
     this.content,
     this.actions,
   }) : super(key: key);
@@ -23,7 +23,7 @@ class BaseSightCard extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: imageHeight),
       child: Card(
         child: Image.network(
-          '${sight.url}',
+          '${sight!.url}',
           width: double.infinity,
           height: imageHeight,
           fit: BoxFit.fitWidth,
@@ -39,7 +39,7 @@ class BaseSightCard extends StatelessWidget {
                 : _ImageLoadProgress(
                     value: _calculateProgressValue(
                       progress.cumulativeBytesLoaded,
-                      progress.expectedTotalBytes,
+                      progress.expectedTotalBytes!,
                     ),
                   );
           },
@@ -55,8 +55,8 @@ class _ImageLoadProgress extends StatelessWidget {
   final double value;
 
   const _ImageLoadProgress({
-    Key key,
-    @required this.value,
+    Key? key,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -67,16 +67,16 @@ class _ImageLoadProgress extends StatelessWidget {
 
 class _ImageCoverLayer extends StatelessWidget {
   final double imageGradientHeight;
-  final Sight sight;
+  final Sight? sight;
   final Widget image;
-  final Widget content;
-  final List<Widget> actions;
+  final Widget? content;
+  final List<Widget>? actions;
 
   const _ImageCoverLayer({
-    Key key,
-    @required this.sight,
-    @required this.image,
-    @required this.imageGradientHeight,
+    Key? key,
+    required this.sight,
+    required this.image,
+    required this.imageGradientHeight,
     this.content,
     this.actions,
   }) : super(key: key);
@@ -106,7 +106,7 @@ class _GradientLayer extends StatelessWidget {
 
   const _GradientLayer(
     this.height, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -133,10 +133,10 @@ class _GradientLayer extends StatelessWidget {
 class _BottomContentLayer extends StatelessWidget {
   static const double minHeight = 96;
 
-  final Widget content;
+  final Widget? content;
   const _BottomContentLayer({
-    Key key,
-    @required this.content,
+    Key? key,
+    required this.content,
   }) : super(key: key);
 
   @override
@@ -162,13 +162,13 @@ class _BottomContentLayer extends StatelessWidget {
 class _TopTransparentLayer extends StatelessWidget {
   static const double height = 92;
 
-  final Sight sight;
+  final Sight? sight;
   final List<Widget> actions;
 
   const _TopTransparentLayer({
-    Key key,
-    @required this.sight,
-    List<Widget> actions,
+    Key? key,
+    required this.sight,
+    List<Widget>? actions,
   })  : this.actions = actions ?? const [],
         super(key: key);
 
@@ -189,10 +189,10 @@ class _TopTransparentLayer extends StatelessWidget {
           top: 16,
           left: 16,
           child: Text(
-            '${sight.type}',
+            '${sight!.type}',
             style: Theme.of(context)
                 .textTheme
-                .subtitle1
+                .subtitle1!
                 .copyWith(color: dmTextColorPrimary),
           ),
         ),

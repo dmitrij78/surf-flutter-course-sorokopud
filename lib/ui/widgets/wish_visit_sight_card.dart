@@ -8,8 +8,8 @@ import 'package:places/ui/widgets/buttons/card_icon_button.dart';
 
 class WishVistSightCard extends BaseSightCard {
   WishVistSightCard({
-    Key key,
-    WishVisitSight sight,
+    Key? key,
+    WishVisitSight? sight,
   }) : super(
           key: key,
           sight: sight,
@@ -36,9 +36,9 @@ class WishVistSightCard extends BaseSightCard {
 }
 
 class _WishVistSightContent extends StatelessWidget {
-  final WishVisitSight sight;
+  final WishVisitSight? sight;
 
-  _WishVistSightContent({Key key, this.sight}) : super(key: key);
+  _WishVistSightContent({Key? key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,22 +48,22 @@ class _WishVistSightContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${sight.name}',
+            '${sight!.name}',
             style: Theme.of(context).textTheme.bodyText1,
           ),
           SizedBox(height: 2),
           Container(
             height: 28,
             child: Text(
-              '${sight.visit}',
+              '${sight!.visit}',
               style: Theme.of(context)
                   .textTheme
-                  .subtitle2
+                  .subtitle2!
                   .copyWith(color: textColorAccentGreen),
             ),
           ),
           Text(
-            '${sight.workHours}',
+            '${sight!.workHours}',
             style: Theme.of(context).textTheme.subtitle2,
           ),
         ],

@@ -8,13 +8,13 @@ class Sight {
   final String workHours;
 
   Sight({
-    this.name,
-    this.lat,
-    this.lon,
-    this.url,
-    this.details,
-    this.type,
-    this.workHours,
+    required this.name,
+    required this.lat,
+    required this.lon,
+    required this.url,
+    required this.details,
+    required this.type,
+    required this.workHours,
   });
 }
 
@@ -22,14 +22,14 @@ class VisitedSight extends Sight {
   final String visited;
 
   VisitedSight(
-      {String name,
-      double lat,
-      double lon,
-      String url,
-      String details,
-      String type,
-      String workHours,
-      this.visited})
+      {required String name,
+      required double lat,
+      required double lon,
+      required String url,
+      required String details,
+      required String type,
+      required String workHours,
+      required this.visited})
       : super(
           name: name,
           lat: lat,
@@ -45,14 +45,14 @@ class WishVisitSight extends Sight {
   final String visit;
 
   WishVisitSight(
-      {String name,
-      double lat,
-      double lon,
-      String url,
-      String details,
-      String type,
-      String workHours,
-      this.visit})
+      {required String name,
+      required double lat,
+      required double lon,
+      required String url,
+      required String details,
+      required String type,
+      required String workHours,
+      required this.visit})
       : super(
           name: name,
           lat: lat,

@@ -9,8 +9,8 @@ import 'buttons/card_icon_button.dart';
 
 class SightCard extends BaseSightCard {
   SightCard({
-    Key key,
-    Sight sight,
+    Key? key,
+    Sight? sight,
   }) : super(
           key: key,
           sight: sight,
@@ -28,9 +28,9 @@ class SightCard extends BaseSightCard {
 }
 
 class _SightContent extends StatelessWidget {
-  final Sight sight;
+  final Sight? sight;
 
-  _SightContent({Key key, this.sight}) : super(key: key);
+  _SightContent({Key? key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +41,13 @@ class _SightContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${sight.name}',
+            '${sight!.name}',
             style: Theme.of(context).textTheme.bodyText1,
             softWrap: true,
           ),
           SizedBox(height: 2),
           Text(
-            '${sight.workHours}',
+            '${sight!.workHours}',
             style: Theme.of(context).textTheme.subtitle2,
           ),
         ],

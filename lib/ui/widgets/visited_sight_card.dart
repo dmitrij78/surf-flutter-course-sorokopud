@@ -8,8 +8,8 @@ import 'package:places/ui/widgets/buttons/card_icon_button.dart';
 
 class VistedSightCard extends BaseSightCard {
   VistedSightCard({
-    Key key,
-    VisitedSight sight,
+    Key? key,
+    VisitedSight? sight,
   }) : super(
           key: key,
           sight: sight,
@@ -36,9 +36,9 @@ class VistedSightCard extends BaseSightCard {
 }
 
 class _VistedSightCard extends StatelessWidget {
-  final VisitedSight sight;
+  final VisitedSight? sight;
 
-  _VistedSightCard({Key key, this.sight}) : super(key: key);
+  _VistedSightCard({Key? key, this.sight}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +48,19 @@ class _VistedSightCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '${sight.name}',
+            '${sight!.name}',
             style: Theme.of(context).textTheme.bodyText1,
           ),
           SizedBox(height: 2),
           Container(
             height: 28,
             child: Text(
-              '${sight.visited}',
+              '${sight!.visited}',
               style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
           Text(
-            '${sight.workHours}',
+            '${sight!.workHours}',
             style: Theme.of(context).textTheme.subtitle2,
           ),
         ],
