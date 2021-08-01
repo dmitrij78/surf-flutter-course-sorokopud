@@ -9,15 +9,17 @@ import 'package:places/ui/screen/filter_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
-  final List<Sight>? sights;
+  const SightListScreen({Key? key, required this.sights}) : super(key: key);
 
-  const SightListScreen({Key? key, this.sights}) : super(key: key);
+  final List<Sight> sights;
 
   @override
   _SightListScreenState createState() => _SightListScreenState();
 }
 
 class _SightListScreenState extends State<SightListScreen> {
+  final SightsFilter filter = SightsFilter.init();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,30 +29,26 @@ class _SightListScreenState extends State<SightListScreen> {
           appBarTitleText,
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(52),
+          preferredSize: const Size.fromHeight(52.0),
           child: Container(
-            margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8),
-            height: 52,
-            child: _SearchField(),
+            margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
+            height: 52.0,
+            child: _SearchField(
+              filter: filter,
+            ),
           ),
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(14.0),
-                itemCount: widget.sights!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 14.0),
-                    child: SightCard(sight: widget.sights![index]),
-                  );
-                },
-              ),
-            ),
-          ],
+        child: ListView.builder(
+          padding: EdgeInsets.all(14.0),
+          itemCount: widget.sights.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 14.0),
+              child: SightCard(sight: widget.sights[index]),
+            );
+          },
         ),
       ),
     );
@@ -60,7 +58,10 @@ class _SightListScreenState extends State<SightListScreen> {
 class _SearchField extends StatelessWidget {
   const _SearchField({
     Key? key,
+    required this.filter,
   }) : super(key: key);
+
+  final SightsFilter filter;
 
   @override
   Widget build(BuildContext context) {
@@ -104,11 +105,15 @@ class _SearchField extends StatelessWidget {
     );
   }
 
-  _showFilterScreen(BuildContext context) => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) {
-            return FilterScreen();
-          },
-        ),
-      );
+  void _showFilterScreen(BuildContext context) async {
+    final newFilter = await Navigator.of(context).push<SightsFilter>(
+      MaterialPageRoute(
+        builder: (context) {
+          return FilterScreen(filter: filter.copyWith());
+        },
+      ),
+    );
+
+    if (newFilter != null && newFilter != filter) {}
+  }
 }

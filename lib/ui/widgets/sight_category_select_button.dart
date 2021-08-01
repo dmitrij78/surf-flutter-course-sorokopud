@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/domain/sight_type.dart';
+import 'package:places/domain/domain.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/text_styles.dart';
 
