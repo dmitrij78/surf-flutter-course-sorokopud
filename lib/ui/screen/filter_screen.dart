@@ -13,14 +13,14 @@ import 'package:places/ui/widgets/sight_category_select_button.dart';
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key, required this.filter}) : super(key: key);
 
-  final SightsFilter filter;
+  final SightFilter filter;
 
   @override
   _FilterScreenState createState() => _FilterScreenState(filter);
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  SightsFilter _filter;
+  SightFilter _filter;
   int _sightCount = 191;
 
   _FilterScreenState(this._filter);
@@ -77,8 +77,8 @@ class _FilterScreenState extends State<FilterScreen> {
                   _filter.minDistance,
                   _filter.maxDistance,
                 ),
-                min: SightsFilter.minDistanceValue,
-                max: SightsFilter.maxDistanceValue,
+                min: SightFilter.minDistanceValue,
+                max: SightFilter.maxDistanceValue,
                 onChanged: (RangeValues values) {
                   setState(() {
                     _filter = _filter.copyWith(

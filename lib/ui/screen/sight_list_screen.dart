@@ -18,7 +18,61 @@ class SightListScreen extends StatefulWidget {
 }
 
 class _SightListScreenState extends State<SightListScreen> {
-  final SightsFilter filter = SightsFilter.init();
+  late SightFilter filter;
+
+  @override
+  void initState() {
+    filter = SightFilter.init();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SightListSateController(
+      filter: filter,
+      sights: widget.sights,
+      filterUpdater: (SightFilter flter) => _updateFilter(filter),
+      child: const _SightsListScreen(),
+    );
+  }
+
+  void _updateFilter(SightFilter filter) {
+    setState(() => this.filter = filter);
+  }
+}
+
+class SightListSateController extends InheritedWidget {
+  const SightListSateController({
+    Key? key,
+    required this.filter,
+    required this.filterUpdater,
+    required List<Sight> sights,
+    required Widget child,
+  })  : this._sights = sights,
+        super(key: key, child: child);
+
+  final List<Sight> _sights;
+
+  final SightFilter filter;
+  final Function(SightFilter filter) filterUpdater;
+
+  List<Sight> get sights => _sights.where((sight) => true).toList();
+
+  static SightListSateController of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<SightListSateController>()!;
+  }
+
+  @override
+  bool updateShouldNotify(covariant SightListSateController oldWidget) {
+    return filter != oldWidget.filter;
+  }
+}
+
+class _SightsListScreen extends StatelessWidget {
+  const _SightsListScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,24 +87,33 @@ class _SightListScreenState extends State<SightListScreen> {
           child: Container(
             margin: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
             height: 52.0,
-            child: _SearchField(
-              filter: filter,
-            ),
+            child: const _SearchField(),
           ),
         ),
       ),
-      body: SafeArea(
-        child: ListView.builder(
-          padding: EdgeInsets.all(14.0),
-          itemCount: widget.sights.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 14.0),
-              child: SightCard(sight: widget.sights[index]),
-            );
-          },
-        ),
-      ),
+      body: SafeArea(child: _SightsListView()),
+    );
+  }
+}
+
+class _SightsListView extends StatelessWidget {
+  const _SightsListView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final stateController = SightListSateController.of(context);
+    final sights = stateController.sights;
+    return ListView.builder(
+      padding: EdgeInsets.all(14.0),
+      itemCount: sights.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 14.0),
+          child: SightCard(sight: sights[index]),
+        );
+      },
     );
   }
 }
@@ -58,10 +121,7 @@ class _SightListScreenState extends State<SightListScreen> {
 class _SearchField extends StatelessWidget {
   const _SearchField({
     Key? key,
-    required this.filter,
   }) : super(key: key);
-
-  final SightsFilter filter;
 
   @override
   Widget build(BuildContext context) {
@@ -106,14 +166,16 @@ class _SearchField extends StatelessWidget {
   }
 
   void _showFilterScreen(BuildContext context) async {
-    final newFilter = await Navigator.of(context).push<SightsFilter>(
-      MaterialPageRoute(
-        builder: (context) {
-          return FilterScreen(filter: filter.copyWith());
-        },
-      ),
-    );
+    final stateController = SightListSateController.of(context);
+    final currentFilter = stateController.filter;
+    final filterScreen = FilterScreen(filter: currentFilter.copyWith());
+    final newFilter = await Navigator.of(context).push<SightFilter>(
+          MaterialPageRoute(builder: (context) => filterScreen),
+        ) ??
+        currentFilter;
 
-    if (newFilter != null && newFilter != filter) {}
+    if (newFilter != currentFilter) {
+      stateController.filterUpdater(newFilter);
+    }
   }
 }

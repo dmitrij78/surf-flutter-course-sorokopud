@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 
 part 'sight_categoty.dart';
 
-class SightsFilter extends Equatable {
+class SightFilter extends Equatable {
   static const minDistanceValue = 100.0;
   static const maxDistanceValue = 10000.0;
 
@@ -10,14 +10,14 @@ class SightsFilter extends Equatable {
   final double maxDistance;
   final Set<SightCategory> categories;
 
-  SightsFilter._({
+  SightFilter._({
     required this.minDistance,
     required this.maxDistance,
     required this.categories,
   });
 
-  factory SightsFilter.init() {
-    return SightsFilter._(
+  factory SightFilter.init() {
+    return SightFilter._(
       minDistance: minDistanceValue,
       maxDistance: maxDistanceValue,
       categories: Set.unmodifiable({}),
@@ -27,12 +27,12 @@ class SightsFilter extends Equatable {
   @override
   List<Object?> get props => [minDistance, maxDistance, categories];
 
-  SightsFilter copyWith({
+  SightFilter copyWith({
     double? minDistance,
     double? maxDistance,
     Set<SightCategory>? categories,
   }) {
-    return SightsFilter._(
+    return SightFilter._(
       minDistance: minDistance ?? this.minDistance,
       maxDistance: maxDistance ?? this.maxDistance,
       categories: categories ?? this.categories,
