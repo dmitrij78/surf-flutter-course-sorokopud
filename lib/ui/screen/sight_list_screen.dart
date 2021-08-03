@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:places/domain/domain.dart';
+import 'package:places/mocks.dart';
 import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/res/strings/strings.dart';
 import 'package:places/ui/res/text_styles.dart';
@@ -9,62 +10,71 @@ import 'package:places/ui/screen/filter_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
-  const SightListScreen({Key? key, required this.sights}) : super(key: key);
+  const SightListScreen({
+    Key? key,
+    required this.sights,
+    required this.currentGeoPoint,
+  }) : super(key: key);
 
   final List<Sight> sights;
+  final GeoPoint currentGeoPoint;
 
   @override
   _SightListScreenState createState() => _SightListScreenState();
 }
 
 class _SightListScreenState extends State<SightListScreen> {
-  late SightFilter filter;
-
-  @override
-  void initState() {
-    filter = SightFilter.init();
-    super.initState();
-  }
+  SightFilter _filter = SightFilter.init();
 
   @override
   Widget build(BuildContext context) {
-    return SightListSateController(
-      filter: filter,
+    return SightListSateProvider(
+      filter: _filter,
       sights: widget.sights,
-      filterUpdater: (SightFilter flter) => _updateFilter(filter),
+      currentGeoPoint: widget.currentGeoPoint,
+      filterUpdater: (SightFilter newFilter) => setState(() {
+        _filter = newFilter;
+      }),
       child: const _SightsListScreen(),
     );
   }
-
-  void _updateFilter(SightFilter filter) {
-    setState(() => this.filter = filter);
-  }
 }
 
-class SightListSateController extends InheritedWidget {
-  const SightListSateController({
+class SightListSateProvider extends InheritedWidget {
+  const SightListSateProvider({
     Key? key,
     required this.filter,
     required this.filterUpdater,
+    required GeoPoint currentGeoPoint,
     required List<Sight> sights,
     required Widget child,
   })  : this._sights = sights,
+        this._currentGeoPoint = currentGeoPoint,
         super(key: key, child: child);
 
+  final GeoPoint _currentGeoPoint;
   final List<Sight> _sights;
 
   final SightFilter filter;
   final Function(SightFilter filter) filterUpdater;
 
-  List<Sight> get sights => _sights.where((sight) => true).toList();
+  List<Sight> get sights =>
+      _sights.where(_isInRadius).where(_filterByCategory).toList();
 
-  static SightListSateController of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<SightListSateController>()!;
+  bool _isInRadius(sight) => _currentGeoPoint.isInRadius(
+        sight.geoPoint,
+        filter.maxDistance,
+        filter.minDistance,
+      );
+
+  bool _filterByCategory(sight) => filter.categories.contains(sight.category);
+
+  static SightListSateProvider of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<SightListSateProvider>()!;
   }
 
   @override
-  bool updateShouldNotify(covariant SightListSateController oldWidget) {
+  bool updateShouldNotify(covariant SightListSateProvider oldWidget) {
     return filter != oldWidget.filter;
   }
 }
@@ -103,10 +113,10 @@ class _SightsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stateController = SightListSateController.of(context);
-    final sights = stateController.sights;
+    final stateProvider = SightListSateProvider.of(context);
+    final sights = stateProvider.sights;
     return ListView.builder(
-      padding: EdgeInsets.all(14.0),
+      padding: const EdgeInsets.all(14.0),
       itemCount: sights.length,
       itemBuilder: (context, index) {
         return Padding(
@@ -129,15 +139,15 @@ class _SearchField extends StatelessWidget {
     return TextField(
       keyboardType: TextInputType.text,
       cursorColor: isDark ? dmTextColorPrimary : lmTextColorPrimary,
-      style: isDark ? dmSearchField : lmSearchField,
+      style: isDark ? dmLabelNormal : lmLabelNormal,
       autofocus: false,
       maxLines: 1,
       decoration: InputDecoration(
         filled: true,
         fillColor: isDark ? dmCardBackground : lmCardBackground,
         prefixIcon: SizedBox(
-          height: 12,
-          width: 12,
+          height: 12.0,
+          width: 12.0,
           child: IconButton(
             onPressed: () => {},
             icon: SvgPicture.asset(
@@ -146,8 +156,8 @@ class _SearchField extends StatelessWidget {
           ),
         ),
         suffixIcon: SizedBox(
-          height: 12,
-          width: 12,
+          height: 12.0,
+          width: 12.0,
           child: IconButton(
             onPressed: () => _showFilterScreen(context),
             icon: SvgPicture.asset(
@@ -156,7 +166,7 @@ class _SearchField extends StatelessWidget {
           ),
         ),
         hintText: searchFieldHintText,
-        hintStyle: dmSearchField.copyWith(color: dmTextColorInactiveBlack),
+        hintStyle: dmLabelNormal.copyWith(color: dmTextColorInactiveBlack),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(12.0),
@@ -166,16 +176,19 @@ class _SearchField extends StatelessWidget {
   }
 
   void _showFilterScreen(BuildContext context) async {
-    final stateController = SightListSateController.of(context);
-    final currentFilter = stateController.filter;
-    final filterScreen = FilterScreen(filter: currentFilter.copyWith());
+    final stateProvider = SightListSateProvider.of(context);
+    final currentFilter = stateProvider.filter;
+    final filterScreen = FilterScreen(
+      filter: currentFilter.copyWith(),
+      sights: mockSights,
+      currentGeoPoint: mockGeoPoint,
+    );
     final newFilter = await Navigator.of(context).push<SightFilter>(
           MaterialPageRoute(builder: (context) => filterScreen),
         ) ??
         currentFilter;
-
     if (newFilter != currentFilter) {
-      stateController.filterUpdater(newFilter);
+      stateProvider.filterUpdater(newFilter);
     }
   }
 }

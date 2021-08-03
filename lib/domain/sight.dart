@@ -1,19 +1,19 @@
+import 'package:places/domain/domain.dart';
+
 class Sight {
   final String name;
-  final double lat;
-  final double lon;
+  final GeoPoint geoPoint;
   final String url;
   final String details;
-  final String type;
+  final SightCategory category;
   final String workHours;
 
   Sight({
     required this.name,
-    required this.lat,
-    required this.lon,
+    required this.geoPoint,
     required this.url,
     required this.details,
-    required this.type,
+    required this.category,
     required this.workHours,
   });
 }
@@ -23,20 +23,18 @@ class VisitedSight extends Sight {
 
   VisitedSight(
       {required String name,
-      required double lat,
-      required double lon,
+      required GeoPoint geoPoint,
       required String url,
       required String details,
-      required String type,
+      required SightCategory category,
       required String workHours,
       required this.visited})
       : super(
           name: name,
-          lat: lat,
-          lon: lon,
+          geoPoint: geoPoint,
           url: url,
           details: details,
-          type: type,
+          category: category,
           workHours: workHours,
         );
 }
@@ -46,20 +44,18 @@ class WishVisitSight extends Sight {
 
   WishVisitSight(
       {required String name,
-      required double lat,
-      required double lon,
+      required GeoPoint geoPoint,
       required String url,
       required String details,
-      required String type,
+      required SightCategory category,
       required String workHours,
       required this.visit})
       : super(
           name: name,
-          lat: lat,
-          lon: lon,
+          geoPoint: geoPoint,
           url: url,
           details: details,
-          type: type,
+          category: category,
           workHours: workHours,
         );
 }

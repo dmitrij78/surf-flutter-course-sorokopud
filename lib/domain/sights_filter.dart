@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 part 'sight_categoty.dart';
 
 class SightFilter extends Equatable {
-  static const minDistanceValue = 100.0;
+  static const minDistanceValue = 10.0;
   static const maxDistanceValue = 10000.0;
 
   final double minDistance;
@@ -20,7 +20,7 @@ class SightFilter extends Equatable {
     return SightFilter._(
       minDistance: minDistanceValue,
       maxDistance: maxDistanceValue,
-      categories: Set.unmodifiable({}),
+      categories: Set<SightCategory>.from(SightCategory.values),
     );
   }
 

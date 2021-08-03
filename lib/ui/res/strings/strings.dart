@@ -16,3 +16,5 @@ const String alreadyVisitedTabTitle = 'Посетил';
 //  Экран Фильтр
 const String clearFiltersButtonText = 'Oчистить';
 const String selectCategoryLabel = 'Категории';
+const String distanceHeaderLabel = 'Расстояние';
+const String shoeSightsButtonTextPrefix = 'Показать';

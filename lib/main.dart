@@ -13,7 +13,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final bool _isDarkMode = true;
+  final bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {

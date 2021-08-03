@@ -9,7 +9,7 @@ import 'package:places/ui/widgets/buttons/card_icon_button.dart';
 class WishVistSightCard extends BaseSightCard {
   WishVistSightCard({
     Key? key,
-    WishVisitSight? sight,
+    required WishVisitSight sight,
   }) : super(
           key: key,
           sight: sight,

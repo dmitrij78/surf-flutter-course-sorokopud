@@ -37,10 +37,13 @@ class HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _controller,
         children: [
-          SightListScreen(sights: mockSights),
+          SightListScreen(
+            sights: mockSights,
+            currentGeoPoint: mockGeoPoint,
+          ),
           Center(child: Text('Screen 2 is unimplemented')),
           VisitingScreen(),
-          //Center(child: Text('Screen 4 is unimplemented')),
+          //Center(child: Text('Sc\;'l;klm+mh+hreen 4 is unimplemented')),
           SightDetails(description: mockDescription)
         ],
       ),

@@ -10,7 +10,7 @@ import 'buttons/card_icon_button.dart';
 class SightCard extends BaseSightCard {
   SightCard({
     Key? key,
-    Sight? sight,
+    required Sight sight,
   }) : super(
           key: key,
           sight: sight,

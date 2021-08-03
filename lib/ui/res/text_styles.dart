@@ -60,10 +60,10 @@ TextStyle _caption = _textRegular.copyWith(
 TextStyle lmCaption = _caption.copyWith(color: lmTextColorPrimary);
 TextStyle dmCaption = _caption.copyWith(color: dmTextColorPrimary);
 
-TextStyle _searchField = _textRegular.copyWith(
+TextStyle _regular16 = _textRegular.copyWith(
   fontSize: 16,
   height: 1.25,
 );
 
-TextStyle lmSearchField = _searchField.copyWith(color: lmTextColorPrimary);
-TextStyle dmSearchField = _searchField.copyWith(color: dmTextColorPrimary);
+TextStyle lmLabelNormal = _regular16.copyWith(color: lmTextColorPrimary);
+TextStyle dmLabelNormal = _regular16.copyWith(color: dmTextColorPrimary);

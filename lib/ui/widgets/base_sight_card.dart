@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/res/colors.dart';
+import 'package:places/ui/extensions/extensions.dart';
 
 class BaseSightCard extends StatelessWidget {
   static const double imageHeight = 188;
 
-  final Sight? sight;
+  final Sight sight;
   final Widget? content;
   final List<Widget>? actions;
 
@@ -23,7 +24,7 @@ class BaseSightCard extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: imageHeight),
       child: Card(
         child: Image.network(
-          '${sight!.url}',
+          '${sight.url}',
           width: double.infinity,
           height: imageHeight,
           fit: BoxFit.fitWidth,
@@ -67,7 +68,7 @@ class _ImageLoadProgress extends StatelessWidget {
 
 class _ImageCoverLayer extends StatelessWidget {
   final double imageGradientHeight;
-  final Sight? sight;
+  final Sight sight;
   final Widget image;
   final Widget? content;
   final List<Widget>? actions;
@@ -162,7 +163,7 @@ class _BottomContentLayer extends StatelessWidget {
 class _TopTransparentLayer extends StatelessWidget {
   static const double height = 92;
 
-  final Sight? sight;
+  final Sight sight;
   final List<Widget> actions;
 
   const _TopTransparentLayer({
@@ -189,7 +190,7 @@ class _TopTransparentLayer extends StatelessWidget {
           top: 16,
           left: 16,
           child: Text(
-            '${sight!.type}',
+            '${sight.category.description}',
             style: Theme.of(context)
                 .textTheme
                 .subtitle1!
