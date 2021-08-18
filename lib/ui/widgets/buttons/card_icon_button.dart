@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CardIconButton extends StatelessWidget {
-  static const size = 18;
-
   const CardIconButton({
     Key? key,
     required this.icon,
@@ -15,14 +13,20 @@ class CardIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 18,
-      width: 18,
-      child: IconButton(
-        icon: this.icon,
-        padding: EdgeInsets.all(.0),
-        splashColor: Colors.amber,
-        onPressed: this.onPressed,
+    return SizedBox.fromSize(
+      size: Size.square(34.0),
+      child: ClipOval(
+        child: Material(
+          clipBehavior: Clip.antiAlias,
+          color: Colors.transparent,
+          child: InkWell(
+            child: Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: icon,
+            ),
+            onTap: onPressed,
+          ),
+        ),
       ),
     );
   }

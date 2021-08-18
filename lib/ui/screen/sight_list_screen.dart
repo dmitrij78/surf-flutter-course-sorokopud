@@ -152,6 +152,7 @@ class _SearchField extends StatelessWidget {
             onPressed: () => {},
             icon: SvgPicture.asset(
               'res/icons/ic_search.svg',
+              
             ),
           ),
         ),
