@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:places/main.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_details.dart';
+import 'package:places/ui/screen/settings_screen.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 import 'package:places/ui/screen/visiting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    Key? key,
+    required this.appModel,
+  }) : super(key: key);
+
+  final AppModel appModel;
+
   @override
   HomeScreenState createState() => HomeScreenState();
 }
@@ -42,9 +51,8 @@ class HomeScreenState extends State<HomeScreen>
             currentGeoPoint: mockGeoPoint,
           ),
           Center(child: Text('Screen 2 is unimplemented')),
-          VisitingScreen(),
-          //Center(child: Text('Sc\;'l;klm+mh+hreen 4 is unimplemented')),
-          SightDetails(description: mockDescription)
+          const VisitingScreen(),
+          SettingsScreen(appModel: widget.appModel),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

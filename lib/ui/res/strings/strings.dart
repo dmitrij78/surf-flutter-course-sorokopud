@@ -18,3 +18,8 @@ const String clearFiltersButtonText = 'Oчистить';
 const String selectCategoryLabel = 'Категории';
 const String distanceHeaderLabel = 'Расстояние';
 const String shoeSightsButtonTextPrefix = 'Показать';
+
+//  Экран Настроек
+const String settingsScreenTitle = 'Настройки';
+const String settingsSwitchThemeLabel = 'Тёмная тема';
+const String settingsScreenShowTutorialLabel = 'Смотреть туториал';

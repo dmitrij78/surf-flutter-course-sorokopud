@@ -7,6 +7,8 @@ import 'package:places/ui/widgets/visited_sight_card.dart';
 import 'package:places/ui/widgets/wish_visit_sight_card.dart';
 
 class VisitingScreen extends StatefulWidget {
+  const VisitingScreen({Key? key});
+
   @override
   _State createState() => _State();
 }

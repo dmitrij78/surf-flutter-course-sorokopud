@@ -7,6 +7,7 @@ const Color lmBottomBarSelectedColor = Color(0xFF3B3E5B);
 const Color lmBottomBarUnselectedColor = Color(0xFF3B3E5B);
 const Color lmCardBackground = Color(0xFFF5F5F5);
 const Color lmIconColor = Colors.black;
+const Color lmIconColorAccent = Color(0xFF4CAF50);
 
 const Color dmPrimary = Color(0xFF21222C);
 const Color dmAccent = Colors.white;
