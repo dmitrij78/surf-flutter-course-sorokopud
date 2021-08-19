@@ -5,8 +5,6 @@ import 'package:places/ui/res/colors.dart';
 import 'package:places/ui/extensions/extensions.dart';
 
 class BaseSightCard extends StatelessWidget {
-  static const double imageHeight = 188;
-
   final Sight sight;
   final Widget? content;
   final List<Widget>? actions;
@@ -20,31 +18,27 @@ class BaseSightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: imageHeight),
-      child: Card(
-        child: Image.network(
-          '${sight.url}',
-          width: double.infinity,
-          height: imageHeight,
-          fit: BoxFit.fitWidth,
-          loadingBuilder: (context, image, progress) {
-            return progress == null
-                ? _ImageCoverLayer(
-                    sight: sight,
-                    image: image,
-                    imageGradientHeight: imageHeight,
-                    content: content,
-                    actions: actions,
-                  )
-                : _ImageLoadProgress(
-                    value: _calculateProgressValue(
-                      progress.cumulativeBytesLoaded,
-                      progress.expectedTotalBytes!,
-                    ),
-                  );
-          },
-        ),
+    return Card(
+      child: Image.network(
+        '${sight.url}',
+        width: double.infinity,
+        height: 188.0,
+        fit: BoxFit.fitWidth,
+        loadingBuilder: (context, image, progress) {
+          return progress == null
+              ? _ImageCoverLayer(
+                  sight: sight,
+                  image: image,
+                  content: content,
+                  actions: actions,
+                )
+              : _ImageLoadProgress(
+                  value: _calculateProgressValue(
+                    progress.cumulativeBytesLoaded,
+                    progress.expectedTotalBytes!,
+                  ),
+                );
+        },
       ),
     );
   }
@@ -69,7 +63,6 @@ class _ImageLoadProgress extends StatelessWidget {
 }
 
 class _ImageCoverLayer extends StatelessWidget {
-  final double imageGradientHeight;
   final Sight sight;
   final Widget image;
   final Widget? content;
@@ -79,7 +72,6 @@ class _ImageCoverLayer extends StatelessWidget {
     Key? key,
     required this.sight,
     required this.image,
-    required this.imageGradientHeight,
     this.content,
     this.actions,
   }) : super(key: key);
