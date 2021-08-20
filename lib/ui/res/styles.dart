@@ -6,8 +6,9 @@ import 'package:places/ui/res/text_styles.dart';
 final ButtonStyle lmButtonStyle = ButtonStyle(
   foregroundColor: MaterialStateProperty.resolveWith<Color>(
     (Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
-      return lmTextColorPrimary;
+      return states.contains(MaterialState.disabled)
+          ? dmTextColorSecondary1
+          : lmTextColorPrimary;
     },
   ),
   textStyle: MaterialStateProperty.all(lmBody2),
@@ -19,8 +20,9 @@ final ButtonStyle lmButtonStyle = ButtonStyle(
 final ButtonStyle dmButtonStyle = ButtonStyle(
   foregroundColor: MaterialStateProperty.resolveWith<Color>(
     (Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
-      return dmTextColorPrimary;
+      return states.contains(MaterialState.disabled)
+          ? dmTextColorSecondary1
+          : dmTextColorPrimary;
     },
   ),
   textStyle: MaterialStateProperty.all(lmBody2),
@@ -32,8 +34,9 @@ final ButtonStyle dmButtonStyle = ButtonStyle(
 final ButtonStyle lmAppBarActionButtonStyle = lmButtonStyle.copyWith(
   foregroundColor: MaterialStateProperty.resolveWith<Color>(
     (Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
-      return textColorAccentGreen;
+      return states.contains(MaterialState.disabled)
+          ? dmTextColorSecondary1
+          : textColorAccentGreen;
     },
   ),
   textStyle: MaterialStateProperty.all(lmBody1),
@@ -42,8 +45,9 @@ final ButtonStyle lmAppBarActionButtonStyle = lmButtonStyle.copyWith(
 final ButtonStyle dmAppBarActionButtonStyle = dmButtonStyle.copyWith(
   foregroundColor: MaterialStateProperty.resolveWith<Color>(
     (Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) return dmTextColorSecondary1;
-      return textColorAccentGreen;
+      return states.contains(MaterialState.disabled)
+          ? dmTextColorSecondary1
+          : textColorAccentGreen;
     },
   ),
   textStyle: MaterialStateProperty.all(dmBody1),

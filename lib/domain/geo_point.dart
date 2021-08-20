@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:math';
 
 class GeoPoint {
@@ -21,35 +20,6 @@ class GeoPoint {
     final dy = ((other.lat - this.lat) * ky).abs();
     return sqrt(dx * dx + dy * dy);
   }
-
-  GeoPoint copyWith({
-    double? lat,
-    double? long,
-  }) {
-    return GeoPoint(
-      lat: lat ?? this.lat,
-      long: long ?? this.long,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'lat': lat,
-      'long': long,
-    };
-  }
-
-  factory GeoPoint.fromMap(Map<String, dynamic> map) {
-    return GeoPoint(
-      lat: map['lat'],
-      long: map['long'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory GeoPoint.fromJson(String source) =>
-      GeoPoint.fromMap(json.decode(source));
 
   @override
   String toString() => 'GeoPoint(lat: $lat, long: $long)';
