@@ -46,7 +46,6 @@ class _DisabledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: missing_required_param
     return TextButton.icon(
       label: Text(label),
       icon: SvgPicture.asset(
