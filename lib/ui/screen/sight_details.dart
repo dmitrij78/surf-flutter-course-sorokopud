@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:places/domain/sight_description.dart';
 import 'package:places/ui/res/colors.dart';
+import 'package:places/ui/res/strings/strings.dart';
+import 'package:places/ui/widgets/buttons/accent_action_button.dart';
+import 'package:places/ui/widgets/buttons/primary_text_button.dart';
 
 class SightDetails extends StatefulWidget {
-  final SightDescription description;
+  final SightDescription? description;
 
   const SightDetails({
-    Key key,
+    Key? key,
     this.description,
   }) : super(key: key);
 
@@ -32,8 +35,14 @@ class _State extends State<SightDetails> {
     return Theme(
       data: detailsTheme,
       child: Scaffold(
-        appBar: _DetailsAppBar(description: widget.description),
-        body: SafeArea(child: _DetailsBody(description: widget.description)),
+        appBar: _DetailsAppBar(
+          description: widget.description,
+        ),
+        body: SafeArea(
+          child: _DetailsBody(
+            description: widget.description,
+          ),
+        ),
       ),
     );
   }
@@ -41,11 +50,11 @@ class _State extends State<SightDetails> {
 
 class _DetailsBody extends StatelessWidget {
   const _DetailsBody({
-    Key key,
-    @required this.description,
+    Key? key,
+    required this.description,
   }) : super(key: key);
 
-  final SightDescription description;
+  final SightDescription? description;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +66,7 @@ class _DetailsBody extends StatelessWidget {
           children: [
             const SizedBox(height: 24),
             Text(
-              description.name,
+              description!.name,
               style: Theme.of(context).textTheme.headline5,
               maxLines: 2,
             ),
@@ -67,31 +76,46 @@ class _DetailsBody extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  description.type,
+                  description!.type,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  description.workHours,
+                  description!.workHours,
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ],
             ),
             const SizedBox(height: 24),
             Text(
-              description.description,
+              description!.description,
               style: Theme.of(context).textTheme.bodyText2,
             ),
             const SizedBox(height: 24),
-            _ActionButton(),
+            AccentActionButton(
+              text: buildRouteButtonText.toUpperCase(),
+              iconAssetName: 'res/icons/ic_build_route.svg',
+              onPressed: () => print('Button BuildRoute is pressed'),
+            ),
             const SizedBox(height: 24),
             _Divider(),
             const SizedBox(height: 8),
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(child: _SecondaryActionButton()),
-                Expanded(child: _SecondaryActionButton()),
+                Expanded(
+                  child: PrimaryTextButton(
+                    label: planToVisitButtonText,
+                    iconAssetName: 'res/icons/ic_calendar.svg',
+                  ),
+                ),
+                Expanded(
+                  child: PrimaryTextButton(
+                    label: addToFavoriteButtonText,
+                    iconAssetName: 'res/icons/ic_favorite.svg',
+                    onPressed: () => print('Button AddToFavorites is pressed'),
+                  ),
+                ),
               ],
             ),
           ],
@@ -102,11 +126,11 @@ class _DetailsBody extends StatelessWidget {
 }
 
 class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final SightDescription description;
+  final SightDescription? description;
 
   const _DetailsAppBar({
-    Key key,
-    @required this.description,
+    Key? key,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -117,7 +141,7 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
           Container(
             color: Theme.of(context).cardColor,
             child: Image.network(
-              '${description.url}',
+              '${description!.url}',
               width: double.infinity,
               fit: BoxFit.fitWidth,
               loadingBuilder: (context, child, progress) {
@@ -148,24 +172,9 @@ class _DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(360);
 }
 
-class _SecondaryActionButton extends StatelessWidget {
-  const _SecondaryActionButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      alignment: Alignment.center,
-      color: lmImageMockColor,
-    );
-  }
-}
-
 class _Divider extends StatelessWidget {
   const _Divider({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -177,30 +186,11 @@ class _Divider extends StatelessWidget {
   }
 }
 
-class _ActionButton extends StatelessWidget {
-  const _ActionButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 48,
-      decoration: BoxDecoration(
-        color: accentColorGreen,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(12),
-        ),
-      ),
-    );
-  }
-}
-
 class _AppBarBackButton extends StatelessWidget {
-  final VoidCallback onBackPressed;
+  final VoidCallback? onBackPressed;
 
   const _AppBarBackButton({
-    Key key,
+    Key? key,
     this.onBackPressed,
   }) : super(key: key);
 
@@ -232,7 +222,7 @@ class _AppBarBackButton extends StatelessWidget {
 
 class _GradientLayer extends StatelessWidget {
   const _GradientLayer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

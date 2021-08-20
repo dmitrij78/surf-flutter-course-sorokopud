@@ -1,20 +1,20 @@
+import 'package:places/domain/domain.dart';
+
 class Sight {
   final String name;
-  final double lat;
-  final double lon;
+  final GeoPoint geoPoint;
   final String url;
   final String details;
-  final String type;
+  final SightCategory category;
   final String workHours;
 
   Sight({
-    this.name,
-    this.lat,
-    this.lon,
-    this.url,
-    this.details,
-    this.type,
-    this.workHours,
+    required this.name,
+    required this.geoPoint,
+    required this.url,
+    required this.details,
+    required this.category,
+    required this.workHours,
   });
 }
 
@@ -22,21 +22,19 @@ class VisitedSight extends Sight {
   final String visited;
 
   VisitedSight(
-      {String name,
-      double lat,
-      double lon,
-      String url,
-      String details,
-      String type,
-      String workHours,
-      this.visited})
+      {required String name,
+      required GeoPoint geoPoint,
+      required String url,
+      required String details,
+      required SightCategory category,
+      required String workHours,
+      required this.visited})
       : super(
           name: name,
-          lat: lat,
-          lon: lon,
+          geoPoint: geoPoint,
           url: url,
           details: details,
-          type: type,
+          category: category,
           workHours: workHours,
         );
 }
@@ -45,21 +43,19 @@ class WishVisitSight extends Sight {
   final String visit;
 
   WishVisitSight(
-      {String name,
-      double lat,
-      double lon,
-      String url,
-      String details,
-      String type,
-      String workHours,
-      this.visit})
+      {required String name,
+      required GeoPoint geoPoint,
+      required String url,
+      required String details,
+      required SightCategory category,
+      required String workHours,
+      required this.visit})
       : super(
           name: name,
-          lat: lat,
-          lon: lon,
+          geoPoint: geoPoint,
           url: url,
           details: details,
-          type: type,
+          category: category,
           workHours: workHours,
         );
 }

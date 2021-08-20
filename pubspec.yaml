@@ -7,15 +7,16 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  flutter_svg: ^0.19.3
+  equatable: ^2.0.3
+  flutter_svg: ^0.22.0
 
-  cupertino_icons: ^1.0.2
+  #cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -26,20 +27,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - res/
-
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: res/fonts/Roboto-Black.ttf
-        - asset: res/fonts/Roboto-BlackItalic.ttf
-        - asset: res/fonts/Roboto-Bold.ttf
-        - asset: res/fonts/Roboto-BoldItalic.ttf
-        - asset: res/fonts/Roboto-Italic.ttf
-        - asset: res/fonts/Roboto-Light.ttf
-        - asset: res/fonts/Roboto-LightItalic.ttf
-        - asset: res/fonts/Roboto-Medium.ttf
-        - asset: res/fonts/Roboto-MediumItalic.ttf
-        - asset: res/fonts/Roboto-Regular.ttf
-        - asset: res/fonts/Roboto-Thin.ttf
-        - asset: res/fonts/Roboto-ThinItalic.ttf
+    - res/icons/

@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:places/main.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_details.dart';
+import 'package:places/ui/screen/settings_screen.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 import 'package:places/ui/screen/visiting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({
+    Key? key,
+    required this.appModel,
+  }) : super(key: key);
+
+  final AppModel appModel;
+
   @override
   HomeScreenState createState() => HomeScreenState();
 }
@@ -19,14 +28,14 @@ class HomeScreenState extends State<HomeScreen>
     _BottomMenueItem(Icons.settings),
   ];
 
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = TabController(length: menuItems.length, vsync: this);
-    _controller.index = 0;
-    _controller.addListener(() {
+    _controller!.index = 0;
+    _controller!.addListener(() {
       setState(() {});
     });
   }
@@ -37,16 +46,18 @@ class HomeScreenState extends State<HomeScreen>
       body: TabBarView(
         controller: _controller,
         children: [
-          SightListScreen(sights: mockSights),
+          SightListScreen(
+            sights: mockSights,
+            currentGeoPoint: mockGeoPoint,
+          ),
           Center(child: Text('Screen 2 is unimplemented')),
-          VisitingScreen(),
-          //Center(child: Text('Screen 4 is unimplemented')),
-          SightDetails(description: mockDescription)
+          const VisitingScreen(),
+          SettingsScreen(appModel: widget.appModel),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _controller.index,
-        onTap: (index) => _controller.animateTo(index),
+        currentIndex: _controller!.index,
+        onTap: (index) => _controller!.animateTo(index),
         items: [
           for (var item in menuItems)
             BottomNavigationBarItem(

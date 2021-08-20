@@ -53,7 +53,17 @@ TextStyle _body2 = _textRegular.copyWith(
 TextStyle lmBody2 = _body2.copyWith(color: lmTextColorPrimary);
 TextStyle dmBody2 = _body2.copyWith(color: dmTextColorPrimary);
 
-TextStyle textRegularl14 = _textRegular.copyWith(
-  fontSize: 14.0,
+TextStyle _caption = _textRegular.copyWith(
+  fontSize: 12.0,
   height: 1.3,
 );
+TextStyle lmCaption = _caption.copyWith(color: lmTextColorPrimary);
+TextStyle dmCaption = _caption.copyWith(color: dmTextColorPrimary);
+
+TextStyle _regular16 = _textRegular.copyWith(
+  fontSize: 16,
+  height: 1.25,
+);
+
+TextStyle lmLabelNormal = _regular16.copyWith(color: lmTextColorPrimary);
+TextStyle dmLabelNormal = _regular16.copyWith(color: dmTextColorPrimary);
